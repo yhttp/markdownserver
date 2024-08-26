@@ -17,7 +17,8 @@ with open(
 dependencies = [
     'yhttp >= 5.3, < 6',
     'pymlconf',
-    'easycli'
+    'easycli',
+    'markdown2',
 ]
 
 

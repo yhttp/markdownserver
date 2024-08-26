@@ -4,7 +4,8 @@ PYTEST_FLAGS = -vv
 PYDEPS_COMMON = \
 	'bddrest >= 5.1, < 6' \
 	'bddcli >= 2.5.1, < 3' \
-	'yhttp-dev >= 3.1.3'
+	'yhttp-dev >= 3.1.3' \
+	'requests'
 
 
 # Assert the python-makelib version

@@ -1,21 +1,23 @@
 import os
+from wsgiref.simple_server import make_server
 
 import easycli
 from yhttp.core import Application, static
 
 from . import __version__
+from .settings import settings
 from .decorator import markdown2html
-
 
 app = Application(version=__version__)
 
 
-# Builtin configuration
-# app.settings.merge('''
-# ''')
+@app.when
+def ready(app):
+    if 'server' in settings:
+        app.settings.merge(settings.server)
 
 
-app.route(f'/(.*)')(
+app.route('/(.*)')(
     markdown2html(cssfiles=['main.css'])(
         static.directory(
             rootpath=os.curdir,
@@ -40,12 +42,6 @@ class Serve(easycli.SubCommand):
             metavar='{HOST:}PORT',
             help='Bind Address. default: %s' % DEFAULT_ADDRESS
         ),
-        easycli.Argument(
-            '-C',
-            '--directory',
-            default='.',
-            help='Change to this path before starting, default is: `.`'
-        )
     ]
 
     def __call__(self, args):  # pragma: no cover
@@ -55,9 +51,6 @@ class Serve(easycli.SubCommand):
         """
         host, port = args.bind.split(':')\
             if ':' in args.bind else ('localhost', args.bind)
-
-        if args.directory != '.':
-            os.chdir(args.directory)
 
         app.ready()
         httpd = make_server(host, int(port), app)

@@ -1,8 +1,6 @@
 import os
 import sys
-from wsgiref.simple_server import make_server
 
-import pymlconf
 import easycli
 
 from . import settings, __version__
@@ -20,11 +18,19 @@ class Main(easycli.Root):
             dest='configurationfile',
             help='Configuration file',
         ),
+        easycli.Argument(
+            '-C', '--directory',
+            metavar="DIRECTORY",
+            default='.',
+            help='Change to this path before starting, default is: `.`'
+        ),
         Serve,
     ]
 
+    def _execute_subcommand(self, args):  # pragma: no cover
+        if args.directory != '.':
+            os.chdir(args.directory)
 
-    def _execute_subcommand(self, args):
         if args.configurationfile:
             settings.init(args.configurationfile)
 
