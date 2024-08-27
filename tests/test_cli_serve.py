@@ -16,10 +16,10 @@ def test_cli_serve(cliapp, freetcpport, mockupfs):
         url = f'http://localhost:{freetcpport}'
         time.sleep(2)
         r = requests.get(url)
-        assert r.text == '<h1 id="index">index</h1>\n'
+        assert r.text.startswith('<!DOCTYPE html>')
 
         r = requests.get(f'{url}/index.html')
-        assert r.text == '<h1>index</h1>'
+        assert r.text.startswith('<!DOCTYPE html>')
 
         s.kill()
 

@@ -1,6 +1,5 @@
-import re
 import os
-from os.path import relpath, splitext
+import re
 from pathlib import Path
 
 
@@ -88,7 +87,7 @@ def extract_toc(root, outfile, dept=2, cr='\n'):
             elif l < level:
                 closeall(l)
 
-            href = relpath(filename, root)
+            href = os.path.relpath(filename, root)
             bookmark = re.sub(r'[:)(><]*', '', h.lower())
             bookmark = re.sub(r'\s+', '-', bookmark)
             itemopen(h, f'/{href}#{bookmark}')

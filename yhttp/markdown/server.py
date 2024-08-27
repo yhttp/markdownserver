@@ -7,10 +7,19 @@ import yhttp.core as y
 
 from . import __version__, indexer
 from .settings import settings
-from .decorator import markdown2html
 from .markdown import markdowner
 
+
+here = os.path.dirname(__file__)
 app = y.Application(version=__version__)
+
+
+app.staticdirectory(
+    '/static/',
+    os.path.join(here, 'static/'),
+    default=False,
+    autoindex=False,
+)
 
 
 @app.when
@@ -18,14 +27,12 @@ def ready(app):
     if 'yhttp' in settings:
         app.settings.merge(settings.server)
 
-    here = os.path.dirname(__file__)
     app.template = Template(filename=os.path.join(here, 'master.mako'))
 
 
 @app.route('/(.*)')
 @y.html
 def get(req, path=None):
-    resp = req.response
     # FIXME: (security) prevent to get parent directories
     targetpath = os.path.join(settings.server.root, path or '')
     targetfile = None
@@ -61,7 +68,7 @@ def get(req, path=None):
     toc = indexer.generate(targetpath)
 
     if not targetfile:
-        yield app.template.render(
+        return app.template.render(
             title=settings.server.title,
             toc=toc,
             content=toc,
@@ -69,7 +76,7 @@ def get(req, path=None):
         return
 
     with open(targetfile) as f:
-        yield app.template.render(
+        return app.template.render(
             title=settings.server.title,
             toc=toc,
             content=markdowner.convert(f.read()),
