@@ -1,3 +1,4 @@
+import io
 import os
 import re
 from pathlib import Path
@@ -22,7 +23,7 @@ def allfiles(root):
         yield filename
 
 
-def extract_toc(root, outfile, dept=2, cr='\n'):
+def extract_toc(root, outfile, depth, cr='\n'):
     step = 2
     level = 0
     indent = 0
@@ -67,7 +68,7 @@ def extract_toc(root, outfile, dept=2, cr='\n'):
     for filename in sorted(allfiles(root)):
         level = 0
         for l, h in headings(filename):
-            if l > (baselevel + dept):
+            if l > (baselevel + depth):
                 continue
 
             if not level:
@@ -99,8 +100,7 @@ def extract_toc(root, outfile, dept=2, cr='\n'):
     listclose()
 
 
-def generate(root):
-    import io
+def generate(root, depth=1):
     f = io.StringIO()
-    extract_toc(root, f)
+    extract_toc(root, f, depth)
     return f.getvalue()

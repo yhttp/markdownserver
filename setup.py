@@ -40,6 +40,11 @@ setup(
         include=['yhttp.markdown'],
         exclude=['tests']
     ),
+    include_package_data=True,
+    package_data={'yhttp.markdown': [
+        'yhttp/markdown/master.mako',
+        'yhttp/markdown/static/*.css'
+    ]},
     entry_points={
         'console_scripts': [
             'yhttp-markdown = yhttp.markdown.main:Main.quickstart'
