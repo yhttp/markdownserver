@@ -1,15 +1,8 @@
 import types
 import functools
 
-import markdown2
 
-
-extras = [
-    'header-ids',
-]
-
-
-markdowner = markdown2.Markdown(extras=extras)
+from .markdown import markdowner
 
 
 def markdown2html(if_contenttype='text/markdown', cssfiles=None):
@@ -35,19 +28,20 @@ def markdown2html(if_contenttype='text/markdown', cssfiles=None):
                 else:
                     yield body
 
-            else:
-                # Convert and serve the html
-                resp.type = 'text/html'
-                if firstchunk is not None:
-                    chunks.append(markdowner.convert(firstchunk).encode())
-                    for chunk in body:
-                        chunks.append(markdowner.convert(chunk).encode())
-                else:
-                    chunks.append(markdowner.convert(body).encode())
+                return
 
-                resp.length = sum(len(c) for c in chunks)
-                for chunk in chunks:
-                    yield chunk
+            # Convert and serve the html
+            resp.type = 'text/html'
+            if firstchunk is not None:
+                chunks.append(markdowner.convert(firstchunk).encode())
+                for chunk in body:
+                    chunks.append(markdowner.convert(chunk).encode())
+            else:
+                chunks.append(markdowner.convert(body).encode())
+
+            resp.length = sum(len(c) for c in chunks)
+            for chunk in chunks:
+                yield chunk
 
         return wrapper
 

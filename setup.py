@@ -19,6 +19,7 @@ dependencies = [
     'pymlconf',
     'easycli',
     'markdown2',
+    'mako',
 ]
 
 
