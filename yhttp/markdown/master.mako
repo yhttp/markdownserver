@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-	<title>${title}</title>
-    <link 
-	  rel="stylesheet" 
-	  href="/static/style.css">
-    <link 
-	  rel="stylesheet" 
-	  href="/static/bootstrap.min.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-		<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">${title}</a>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-3 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-    		  ${toc}
-            </ul>
-    	  </div>
-    	</nav>
-    	 <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-		   % if not content == toc:
-    	     ${content}
-		   % endif
-    	 </main>
-      </div>
-    </div>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/index.css" >
+  <script>
+    if (document.documentMode || /Edge/.test(navigator.userAgent)) {
+        alert('Oh Sorry!\nWe\'re not taking care of the IE and Edge. '
+          + 'So, you have two options:\n'
+          + '1. Make your own ASCII diagram service for your environment.\n'
+          + '2. Use a web browser, for example: Google Chrome, Firefox etc.\n'
+          + '\nWe strongly recommend the second option.');
+    }
+  </script>
+  <noscript>Please enable the Javascript to use ADia.</noscript>
+</head>
+<body onload="load()">
+
+<nav>
+  Logo
+</nav>
+  
+<div class="content">
+  <!-- Sidebar -->
+  <aside>
+      ${toc}
+  </aside>
+  <div id="splitter" > </div>
+  <!-- main content -->
+  <main>
+    ${content}
+  </main>
+</div>
+
+  <script type="text/javascript" src="/static/index.js"></script>
+</body>
 </html>

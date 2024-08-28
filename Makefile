@@ -5,7 +5,8 @@ PYDEPS_COMMON = \
 	'bddrest >= 5.1, < 6' \
 	'bddcli >= 2.5.1, < 3' \
 	'yhttp-dev >= 3.1.3' \
-	'requests'
+	'requests' \
+	'libsass'
 
 
 # Assert the python-makelib version
@@ -22,3 +23,7 @@ endif
 
 # Include a proper bundle rule file.
 include $(PYTHON_MAKELIB_PATH)/venv-lint-test-webapi.mk
+
+
+serve:
+	$(PREFIX)/bin/yhttp-markdown serve

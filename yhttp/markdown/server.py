@@ -2,7 +2,8 @@ import os
 from wsgiref.simple_server import make_server
 
 import easycli
-from mako.template import Template
+import sass as libsass
+from mako.lookup import TemplateLookup
 import yhttp.core as y
 
 from . import __version__, indexer
@@ -27,7 +28,31 @@ def ready(app):
     if 'yhttp' in settings:
         app.settings.merge(settings.server)
 
-    app.template = Template(filename=os.path.join(here, 'master.mako'))
+    app.loopkup = TemplateLookup(
+        directories=[here],
+        cache_enabled=not settings.yhttp.debug,
+    )
+
+
+def sasscompile(s):
+    return libsass.compile(
+        indented=True,
+        string=s,
+        include_paths=[os.path.join(here, 'styles')],
+        source_comments=False,
+    )
+
+
+sass = y.utf8('text/css', dump=sasscompile)
+
+
+# TODO: cache
+@app.route('/index.css')
+@sass
+def get(req, path=None):
+    with open(os.path.join(here, 'styles/index.sass')) as f:
+        return f.read()
+
 
 
 @app.route('/(.*)')
@@ -66,9 +91,10 @@ def get(req, path=None):
 
     # Generate TOC
     toc = indexer.generate(targetpath)
+    t = app.loopkup.get_template('master.mako')
 
     if not targetfile:
-        return app.template.render(
+        return t.render(
             title=settings.server.title,
             toc=toc,
             content=toc,
@@ -76,7 +102,7 @@ def get(req, path=None):
         return
 
     with open(targetfile) as f:
-        return app.template.render(
+        return t.render(
             title=settings.server.title,
             toc=toc,
             content=markdowner.convert(f.read()),
