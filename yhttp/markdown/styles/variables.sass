@@ -1,47 +1,24 @@
-/* Colors */
-$bg-verydark: #080808
-$bg-dark: #0d1117 
-$bg-light: #161b22
+/* colors */
 $fg: #c9d1d9
-$border-color: $bg-verydark
-
+$bg: #123
 $jingool: #4c4359
 $mangool: #5a9e70
 
-$border-focus-color: #fdfdfd
 
-/* Syntax Highlighting */
-$hl-keyword: #1e90ff
-$hl-comment: #008b8b 
-$hl-attr: #4682b4
-$hl-op: #ff69b4
-$hl-text: $fg
-$hl-module: #e9967a
-$hl-return: #a9a9a9
+/* derived colors */
+$bgdark: darken($bg, 50%)
 
-/* Debug */
+
+/* debug */
 $debug: inset 0 0 1px #0f0
 
-/* Font */
-$font: Helvetica, Arial, Verdana
-$fontsize: 15px
-$lineheight: 20px
 
-/* Nav */
-$navheight: 48px
+/* gutter */
+$gutter: 12px
 
-/* Gutter */
-$gutter: 10px
 
-/* Grid */
+/* grid */
 $devices:                     ("sm": (   0px,  768px, 15px))
 $devices: map-merge($devices, ("md": ( 768px, 1024px, 14px)))
 $devices: map-merge($devices, ("lg": (1024px, 1200px, 13px)))
 $devices: map-merge($devices, ("xg": (1200px, 4096px, 13px)))
-
-/* Scroll Bars */
-$scrollbar-width: $gutter
-$scrollbar-radius: 5px
-
-/* Toolbar */
-$toolheight: 28px

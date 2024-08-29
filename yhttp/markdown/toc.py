@@ -89,7 +89,6 @@ def extractdir(root, directory, depth=6):
         if not item.endswith('.md'):
             continue
 
-        print(f'Extractig headings from {filepath}')
         with open(filepath) as file:
             _extract(
                 stack,

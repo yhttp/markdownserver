@@ -17,7 +17,7 @@
 </head>
 <body onload="load()">
 
-<nav>
+<nav id="header">
   Logo
 </nav>
 
@@ -38,14 +38,15 @@
 <div class="content">
   <!-- Sidebar -->
   <aside>
-    <h3>Table of contents</h3>
-    ${rendertoc(toc)}
     <h3>Navigation</h3>
     <ul>
     % for h in subdirs:
       <li><a href="${h}">${h}</a></li>
     % endfor
     </ul>
+
+    <h3>Table of contents</h3>
+    ${rendertoc(toc)}
 
   </aside>
   <div id="splitter" > </div>
