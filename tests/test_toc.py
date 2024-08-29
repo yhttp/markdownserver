@@ -12,9 +12,9 @@ def test_toc_extractdir(mockupfs):
         '.qux.md': '## qux',
     })
 
-    out = toc.extractdir(root, '.')
-    assert out == [
-        'bar',
+    headings, subdirs = toc.extractdir(root, '.')
+    assert subdirs == ['bar']
+    assert headings == [
         {
             'bookmark': 'index',
             'children': [

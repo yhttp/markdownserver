@@ -55,7 +55,7 @@ def _extract(stack, filename, lines, depth=6):
             title=title,
             level=level,
             children=[],
-            href=filename,
+            href=f'{filename}#{bookmark}',
             bookmark=bookmark
         )
         stack[-1].append(current)
@@ -89,7 +89,7 @@ def extractdir(root, directory, depth=6):
         if not item.endswith('.md'):
             continue
 
-        print(f'Extractig heading from {filepath}')
+        print(f'Extractig headings from {filepath}')
         with open(filepath) as file:
             _extract(
                 stack,
@@ -98,4 +98,4 @@ def extractdir(root, directory, depth=6):
                 depth
             )
 
-    return subdirs + headings
+    return headings, subdirs

@@ -1,3 +1,4 @@
+- exclude file/dir patterns
 - pretty fallback page
 - github actions
 - debug: true on deploy

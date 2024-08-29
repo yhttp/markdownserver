@@ -20,11 +20,33 @@
 <nav>
   Logo
 </nav>
-  
+
+<%def name="rendertoc(items)">
+% if items:
+  <ul>
+  % for item in items:
+    <li>
+      <a href="${item['href']}">${item['title']}</a>
+      ${rendertoc(item['children'])}
+    </li>
+  % endfor
+  </ul>
+% endif
+</%def>
+
+
 <div class="content">
   <!-- Sidebar -->
   <aside>
-      ${toc}
+    <h3>Table of contents</h3>
+    ${rendertoc(toc)}
+    <h3>Navigation</h3>
+    <ul>
+    % for h in subdirs:
+      <li><a href="${h}">${h}</a></li>
+    % endfor
+    </ul>
+
   </aside>
   <div id="splitter" > </div>
   <!-- main content -->

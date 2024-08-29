@@ -89,13 +89,14 @@ def get(req, path=None):
         targetfile = None
 
     # Generate TOC
-    toc_ = toc.extractdir(targetpath, '', settings.toc.depth)
+    headings, subdirs = toc.extractdir(targetpath, '', settings.toc.depth)
     t = app.loopkup.get_template('master.mako')
 
     if not targetfile:
         return t.render(
             title=settings.server.title,
-            toc=toc_,
+            toc=headings,
+            subdirs=subdirs,
             content='',
         )
         return
@@ -103,35 +104,22 @@ def get(req, path=None):
     with open(targetfile) as f:
         return t.render(
             title=settings.server.title,
-            toc=toc,
+            toc=headings,
+            subdirs=subdirs,
             content=markdowner.convert(f.read()),
         )
 
 
-# app.route('/(.*)')(
-#     markdown2html(cssfiles=['main.css'])(
-#         y.static.directory(
-#             rootpath=os.curdir,
-#             default='index.md',
-#             autoindex=True,
-#             fallback=False
-#         )
-#     )
-# )
-
-
-DEFAULT_ADDRESS = '8080'
-
-
 class Serve(easycli.SubCommand):
+    _default_bind = '8080'
     __command__ = 'serve'
     __aliases__ = ['s']
     __arguments__ = [
         easycli.Argument(
             '-b', '--bind',
-            default=DEFAULT_ADDRESS,
+            default=_default_bind,
             metavar='{HOST:}PORT',
-            help='Bind Address. default: %s' % DEFAULT_ADDRESS
+            help='Bind Address. default: %s' % _default_bind
         ),
     ]
 
