@@ -3,7 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+
+  <!-- favicon -->
+  <link rel="icon" href="${metapath}/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="${metapath}/favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" 
+        href="${metapath}/apple-touch-icon.png" 
+        sizes="16x16" />
+  <link rel="apple-touch-icon" 
+        href="${metapath}/apple-touch-icon.png" 
+        sizes="16x16" />
+  <link rel="manifest" href="/webmanifest.json">
+
+  <!-- styles -->
   <link rel="stylesheet" href="/index.css" >
+  
+  <!-- scripts -->
   <script>
     if (document.documentMode || /Edge/.test(navigator.userAgent)) {
         alert('Oh Sorry!\nWe\'re not taking care of the IE and Edge. '
@@ -18,7 +33,8 @@
 <body onload="load()">
 
 <nav id="header">
-  Logo
+  <img src="${metapath}/logo.svg" width="100" height="100"/>
+  <h1>${title}</h1>
 </nav>
 
 <%def name="rendertoc(items)">

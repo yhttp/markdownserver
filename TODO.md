@@ -1,4 +1,5 @@
 - logo
+- justify text
 - sample files folder
 - exclude file/dir patterns
 - pretty fallback page
@@ -6,3 +7,5 @@
 - debug: true on deploy
 - readme badges
 - create bookmark button
+- command line argument to set any option
+- raise 404 if file not exists + fallback

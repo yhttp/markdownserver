@@ -6,7 +6,7 @@ yhttp:
     debug: false
 
 server:
-    title: Markdown Server
+    title: http Markdown Server
     default_document: index.md
     fallback_document: notfound.md
     root: .

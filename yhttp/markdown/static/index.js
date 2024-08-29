@@ -18,4 +18,4 @@ function resize(e) {
 }
 
 
-// sidebar.style.flexBasis = '325px';
+// sidebar.style.flexBasis = '25px';

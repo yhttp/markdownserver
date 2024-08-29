@@ -26,4 +26,4 @@ include $(PYTHON_MAKELIB_PATH)/venv-lint-test-webapi.mk
 
 
 serve:
-	$(PREFIX)/bin/yhttp-markdown serve
+	$(PREFIX)/bin/yhttp-markdown -C$(HERE)/examples serve

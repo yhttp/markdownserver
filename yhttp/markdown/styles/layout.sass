@@ -6,21 +6,33 @@ body
   display: flex
   flex-direction: column
   flex-wrap: nowrap
-
-
-.content
-  overflow-y: auto
-  width: 100%
-  height: 100%
-  display: flex
-  flex-direction: row
-  aside
+  nav
+    flex: 0 1
+    display: flex
+    flex-direction: row
     padding: $gutter
-  #splitter
-    width: $gutter
-  main
-    flex-grow: 2
-    padding: $gutter ($gutter * 4)
+    img
+      margin: $gutter 2px $gutter $gutter 
+      width: 32px
+      height: 32px
+    h1
+      margin: $gutter 0px
+      line-height: 110% 
+
+  .content
+    overflow-y: auto
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: row
+    aside
+      padding: $gutter
+      flex-shrink: 0
+    #splitter
+      width: $gutter
+      flex: 0 0 $gutter
+    main
+      padding: $gutter ($gutter * 4)
 
 
 h1, h2, h3, h4, h5, h6

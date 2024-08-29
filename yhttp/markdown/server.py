@@ -15,14 +15,6 @@ here = os.path.dirname(__file__)
 app = y.Application(version=__version__)
 
 
-app.staticdirectory(
-    '/static/',
-    os.path.join(here, 'static/'),
-    default=False,
-    autoindex=False,
-)
-
-
 @app.when
 def ready(app):
     if 'yhttp' in settings:
@@ -54,7 +46,25 @@ def get(req, path=None):
         return f.read()
 
 
-@app.route('/(.*)')
+@app.route(r'/webmanifest\.json')
+@y.json
+def get(req):
+    return dict(
+        icons=[
+            dict(
+                src=f'{app.metapath}/android-chrome-192x192.png',
+                type='image/png',
+                sizes='192x192'
+            ),
+            dict(
+                src=f'{app.metapath}/android-chrome-512x512.png',
+                type='image/png',
+                sizes='512x512'
+            )
+        ]
+    )
+
+
 @y.html
 def get(req, path=None):
     # FIXME: (security) prevent to get parent directories
@@ -92,22 +102,18 @@ def get(req, path=None):
     headings, subdirs = toc.extractdir(targetpath, '', settings.toc.depth)
     t = app.loopkup.get_template('master.mako')
 
+    renderargs = dict(
+        title=settings.server.title,
+        toc=headings,
+        subdirs=subdirs,
+        metapath=app.metapath,
+    )
     if not targetfile:
-        return t.render(
-            title=settings.server.title,
-            toc=headings,
-            subdirs=subdirs,
-            content='',
-        )
+        return t.render(content='', **renderargs)
         return
 
     with open(targetfile) as f:
-        return t.render(
-            title=settings.server.title,
-            toc=headings,
-            subdirs=subdirs,
-            content=markdowner.convert(f.read()),
-        )
+        return t.render(content=markdowner.convert(f.read()), **renderargs)
 
 
 class Serve(easycli.SubCommand):
@@ -131,7 +137,28 @@ class Serve(easycli.SubCommand):
         host, port = args.bind.split(':')\
             if ':' in args.bind else ('localhost', args.bind)
 
+        # metadata (favicon, logo and etc)
+        metadir = os.path.join(args.directory, '.ymdmetadata')
+        if not os.path.isdir(metadir):
+            metadir = os.path.join(here, 'defaultmetadata')
+
+        app.metapath = '/.ymdmetadata'
+        app.staticdirectory(
+            r'/\.ymdmetadata/',
+            metadir,
+            default=False,
+            autoindex=False,
+        )
+
+        app.staticdirectory(
+            r'/static/',
+            os.path.join(here, 'static/'),
+            default=False,
+            autoindex=False,
+        )
+        app.route('/(.*)')(get)
         app.ready()
+
         httpd = make_server(host, int(port), app)
         print(f'Markdown server started at http://{host}:{port}')
         try:
