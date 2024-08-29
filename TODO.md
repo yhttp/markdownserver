@@ -1,2 +1,4 @@
 - pretty fallback page
 - github actions
+- debug: true on deploy
+- readme badges

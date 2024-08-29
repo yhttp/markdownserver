@@ -10,6 +10,9 @@ server:
     default_document: index.md
     fallback_document: notfound.md
     root: .
+
+toc:
+    depth: 3
 '''
 
 

@@ -6,7 +6,7 @@ import sass as libsass
 from mako.lookup import TemplateLookup
 import yhttp.core as y
 
-from . import __version__, indexer
+from . import __version__, toc
 from .settings import settings
 from .markdown import markdowner
 
@@ -54,7 +54,6 @@ def get(req, path=None):
         return f.read()
 
 
-
 @app.route('/(.*)')
 @y.html
 def get(req, path=None):
@@ -90,14 +89,14 @@ def get(req, path=None):
         targetfile = None
 
     # Generate TOC
-    toc = indexer.generate(targetpath)
+    toc_ = toc.extractdir(targetpath, '', settings.toc.depth)
     t = app.loopkup.get_template('master.mako')
 
     if not targetfile:
         return t.render(
             title=settings.server.title,
-            toc=toc,
-            content=toc,
+            toc=toc_,
+            content='',
         )
         return
 

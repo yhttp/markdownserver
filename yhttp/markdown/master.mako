@@ -32,7 +32,6 @@
     ${content}
   </main>
 </div>
-
-  <script type="text/javascript" src="/static/index.js"></script>
+<script type="text/javascript" src="/static/index.js"></script>
 </body>
 </html>
