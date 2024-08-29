@@ -11,13 +11,18 @@ body
     display: flex
     flex-direction: row
     padding: $gutter
-    img
-      margin: $gutter 2px $gutter $gutter 
-      width: 32px
-      height: 32px
-    h1
-      margin: $gutter 0px
-      line-height: 110% 
+    a
+      height: $headersize
+      display: flex 
+      flex-direction: row
+      margin: $gutter
+      img
+        margin: 0px 2px
+        width: $headersize
+        height: $headersize
+      h1 
+        margin: 0px
+        height: 100%
 
   .content
     overflow-y: auto
@@ -38,3 +43,16 @@ body
 
 h1, h2, h3, h4, h5, h6
   margin: ($gutter * 4) 0px ($gutter * 2) 0px 
+
+
+aside
+  h1, h2, h3, h4, h5, h6
+    margin-bottom: 0
+  ul
+    font-size: .92rem
+    margin: 0
+    padding-left: $gutter
+    list-style: none
+  > ul
+    padding: 0
+

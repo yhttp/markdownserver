@@ -1,4 +1,3 @@
-- sample files folder
 - exclude file/dir patterns
 - pretty fallback page
 - github actions

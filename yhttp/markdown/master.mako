@@ -33,8 +33,10 @@
 <body onload="load()">
 
 <nav id="header">
-  <img src="${metapath}/logo.svg" width="100" height="100"/>
-  <h1>${title}</h1>
+  <a href="/">
+    <img src="${metapath}/logo.svg" width="100" height="100"/>
+    <h1>${title}</h1>
+  </a>
 </nav>
 
 <%def name="rendertoc(items)">
@@ -57,10 +59,9 @@
     <h3>Navigation</h3>
     <ul>
     % for h in subdirs:
-      <li><a href="${h}">${h}</a></li>
+      <li><a href="${h}/">${h}</a></li>
     % endfor
     </ul>
-
     <h3>Table of contents</h3>
     ${rendertoc(toc)}
 
