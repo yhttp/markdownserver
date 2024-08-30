@@ -1,8 +1,15 @@
 import time
 
+import pytest
 import requests
 
+from .conftest import GITHUBACTIONS
 
+
+@pytest.mark.skipif(
+    GITHUBACTIONS,
+    reason='no way of testing this by GH currently, due the Github actions bug'
+)
 def test_cli_serve(cliapp, freetcpport, mockupfs):
     root = mockupfs(**{
         'bar': {
