@@ -21,8 +21,8 @@ app.settings.merge('''
 debug: true
 
 # app specific
-default_document: index.md
-fallback_document: notfound.md
+default: index.md
+fallback: index.md
 root: .
 
 title: HTTP Markdown Server
@@ -87,16 +87,17 @@ def get(req):
 @y.html
 def get(req, path=None):
     # FIXME: (security) prevent to get parent directories
+    curpath = os.path.dirname(path) if path else '/'
     targetpath = os.path.join(app.settings.root, path or '')
     targetfile = None
 
     # Check exclusiono
     for pat in app.excludes:
-        if pat.mathc(path):
+        if pat.match(path):
             raise y.statuses.notfound()
 
     # Default document
-    default = app.settings.default_document
+    default = app.settings.default
     if os.path.isdir(targetpath):
         if default:
             default = os.path.join(targetpath, default)
@@ -109,11 +110,16 @@ def get(req, path=None):
 
     # Fallback
     if not targetfile or not os.path.isfile(targetfile):
-        fallback = app.settings.fallback_document
+        fallback = app.settings.fallback
         if fallback:
-            fallback = os.path.join(app.settings.root, fallback)
+            fallback = os.path.join(app.settings.root, curpath, fallback)
             if os.path.exists(fallback):
-                targetfile = fallback
+                raise y.statuses.found(app.settings.fallback)
+
+            fallback = os.path.join(app.settings.root, app.settings.fallback)
+            if os.path.exists(fallback):
+                redurl = os.path.join('/', app.settings.fallback)
+                raise y.statuses.found(redurl)
 
     # 404 not found
     if not targetfile or not os.path.isfile(targetfile):
