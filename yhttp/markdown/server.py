@@ -20,10 +20,12 @@ def ready(app):
     if 'yhttp' in settings:
         app.settings.merge(settings.server)
 
+    app.excludes = [re.compile(p) for p in settings.exclude or []]
     app.loopkup = TemplateLookup(
         directories=[here],
         cache_enabled=not settings.yhttp.debug,
     )
+
 
 
 def sasscompile(s):
@@ -68,8 +70,13 @@ def get(req):
 @y.html
 def get(req, path=None):
     # FIXME: (security) prevent to get parent directories
-    targetpath = os.path.join(settings.server.root, path or '')
+    targetpath = os.path.join(settings.root, path or '')
     targetfile = None
+
+    # Check exclusiono
+    for pat in app.excludes:
+        if pat.mathc(path):
+            raise y.statuses.notfound()
 
     # Default document
     default = settings.server.default_document
@@ -87,7 +94,7 @@ def get(req, path=None):
     if not targetfile or not os.path.isfile(targetfile):
         fallback = settings.server.fallback_document
         if fallback:
-            fallback = os.path.join(settings.server.root, fallback)
+            fallback = os.path.join(settings.root, fallback)
             if os.path.exists(fallback):
                 targetfile = fallback
 
@@ -103,7 +110,7 @@ def get(req, path=None):
     t = app.loopkup.get_template('master.mako')
 
     renderargs = dict(
-        title=settings.server.title,
+        title=settings.title,
         hometitle='Home',
         toc=headings,
         subdirs=subdirs,

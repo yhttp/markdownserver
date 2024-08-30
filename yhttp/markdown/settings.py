@@ -6,13 +6,19 @@ yhttp:
     debug: false
 
 server:
-    title: http Markdown Server
     default_document: index.md
     fallback_document: notfound.md
-    root: .
 
+
+root: .
+title: HTTP Markdown Server
 toc:
     depth: 3
+
+
+# a list of regex patterns to exclude from TOC and HTTP serve
+exclude:
+
 '''
 
 

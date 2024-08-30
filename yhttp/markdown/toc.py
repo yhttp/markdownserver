@@ -56,7 +56,6 @@ def _extract(stack, filename, lines, depth=6):
             level=level,
             children=[],
             href=f'{filename}#{bookmark}',
-            bookmark=bookmark
         )
         stack[-1].append(current)
 

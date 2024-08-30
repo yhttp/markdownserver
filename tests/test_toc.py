@@ -16,19 +16,17 @@ def test_toc_extractdir(mockupfs):
     assert subdirs == ['bar']
     assert headings == [
         {
-            'bookmark': 'index',
+            'href': '0-index.md#index',
+            'level': 1,
+            'title': 'index',
             'children': [
                 {
-                    'bookmark': 'foo',
                     'children': [],
-                    'href': '1-foo.md',
+                    'href': '1-foo.md#foo',
                     'level': 2,
                     'title': 'foo',
                 },
             ],
-            'href': '0-index.md',
-            'level': 1,
-            'title': 'index',
         },
     ]
 
@@ -45,20 +43,17 @@ def test_toc_extract():
     out = toc.extract('foobarbaz.md', doc.splitlines())
     assert out == [
         {
-            'bookmark': 'foo',
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#foo',
             'level': 1,
             'title': 'Foo',
             'children': [
                 {
-                    'bookmark': 'bar',
-                    'href': 'foobarbaz.md',
+                    'href': 'foobarbaz.md#bar',
                     'level': 2,
                     'title': 'Bar',
                     'children': [
                         {
-                            'bookmark': 'baz',
-                            'href': 'foobarbaz.md',
+                            'href': 'foobarbaz.md#baz',
                             'level': 3,
                             'title': 'Baz',
                             'children': [],
@@ -66,8 +61,7 @@ def test_toc_extract():
                     ],
                 },
                 {
-                    'bookmark': 'qux',
-                    'href': 'foobarbaz.md',
+                    'href': 'foobarbaz.md#qux',
                     'level': 2,
                     'title': 'Qux',
                     'children': [],
@@ -75,8 +69,7 @@ def test_toc_extract():
             ],
         },
         {
-            'bookmark': 'quux',
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#quux',
             'level': 1,
             'title': 'Quux',
             'children': [],
@@ -94,14 +87,12 @@ def test_toc_extract_depth():
     out = toc.extract('foobarbaz.md', doc.splitlines(), depth=2)
     assert out == [
         {
-            'bookmark': 'foo',
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#foo',
             'level': 1,
             'title': 'Foo',
             'children': [
                 {
-                    'bookmark': 'bar',
-                    'href': 'foobarbaz.md',
+                    'href': 'foobarbaz.md#bar',
                     'level': 2,
                     'title': 'Bar',
                     'children': [],
@@ -120,9 +111,8 @@ def test_toc_extract_levelgap():
     out = toc.extract('foobarbaz.md', doc.splitlines())
     assert out == [
         {
-            'bookmark': 'foo',
             'children': [],
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#foo',
             'level': 1,
             'title': 'Foo',
         },
@@ -140,20 +130,17 @@ def test_toc_extract_backwardgap():
     out = toc.extract('foobarbaz.md', doc.splitlines())
     assert out == [
         {
-            'bookmark': 'foo',
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#foo',
             'level': 1,
             'title': 'Foo',
             'children': [
                 {
-                    'bookmark': 'bar',
-                    'href': 'foobarbaz.md',
+                    'href': 'foobarbaz.md#bar',
                     'level': 2,
                     'title': 'Bar',
                     'children': [
                         {
-                            'bookmark': 'baz',
-                            'href': 'foobarbaz.md',
+                            'href': 'foobarbaz.md#baz',
                             'level': 3,
                             'title': 'Baz',
                             'children': [],
@@ -163,8 +150,7 @@ def test_toc_extract_backwardgap():
             ],
         },
         {
-            'bookmark': 'quux',
-            'href': 'foobarbaz.md',
+            'href': 'foobarbaz.md#quux',
             'level': 1,
             'title': 'Quux',
             'children': [],

@@ -1,4 +1,3 @@
-- exclude file/dir patterns
 - pretty fallback page
 - github actions
 - debug: true on deploy
@@ -7,3 +6,4 @@
 - command line argument to set any option
 - raise 404 if file not exists + fallback
 - about page
+- test html pages
