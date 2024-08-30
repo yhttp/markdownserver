@@ -1,10 +1,7 @@
 # Now
-- test & 100% coverage
 - create bookmark button
 - code blocks + copy icon
-- raise 404 if file not exists + fallback
 - about page
-- test html pages
 - disable text selection on splitter
 
 ## later
