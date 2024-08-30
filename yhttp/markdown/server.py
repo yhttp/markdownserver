@@ -13,16 +13,16 @@ from .markdown import markdowner
 
 here = os.path.dirname(__file__)
 app = y.Application(version=__version__)
+cfg = app.settings
 
 
 # Builtin configuration
-app.settings.merge('''
+cfg.merge('''
 # yhttp debug flag
 debug: true
 
 # app specific
 default: index.md
-fallback: index.md
 root: .
 
 title: HTTP Markdown Server
@@ -33,8 +33,9 @@ toc:
 # a list of regex patterns to exclude from TOC and HTTP serve
 exclude:
 
-# template
-template: default.mako
+# templates
+markdown_template: default.mako
+notfound_template: notfound.mako
 
 # metadata path
 metadata:
@@ -67,7 +68,7 @@ def get(req, path=None):
 @app.route(r'/webmanifest\.json')
 @y.json
 def get(req):
-    baseurl = app.settings.metadata.baseurl
+    baseurl = cfg.metadata.baseurl
     return dict(
         icons=[
             dict(
@@ -84,20 +85,34 @@ def get(req):
     )
 
 
+def notfound(req, path, **kw):
+    template = app.loopkup.get_template(cfg.notfound_template)
+    req.response.status = y.statuses.notfound().status
+    return template.render(filename=path, **kw)
+
+
 @y.html
 def get(req, path=None):
     # FIXME: (security) prevent to get parent directories
-    curpath = os.path.dirname(path) if path else '/'
-    targetpath = os.path.join(app.settings.root, path or '')
+    targetpath = os.path.join(cfg.root, path or '')
     targetfile = None
+
+    renderargs = dict(
+        title=cfg.title,
+        hometitle='Home',
+        toc=[],
+        subdirs=[],
+        metapath=cfg.metadata.baseurl,
+        paths=os.path.dirname(path).split('/') if path else [],
+    )
 
     # Check exclusiono
     for pat in app.excludes:
         if pat.match(path):
-            raise y.statuses.notfound()
+            return notfound(req, path, **renderargs)
 
     # Default document
-    default = app.settings.default
+    default = cfg.default
     if os.path.isdir(targetpath):
         if default:
             default = os.path.join(targetpath, default)
@@ -108,57 +123,35 @@ def get(req, path=None):
         targetfile = targetpath
         targetpath = os.path.dirname(targetpath)
 
-    # Fallback
-    if not targetfile or not os.path.isfile(targetfile):
-        fallback = app.settings.fallback
-        if fallback:
-            fallback = os.path.join(app.settings.root, curpath, fallback)
-            if os.path.exists(fallback):
-                raise y.statuses.found(app.settings.fallback)
-
-            fallback = os.path.join(app.settings.root, app.settings.fallback)
-            if os.path.exists(fallback):
-                redurl = os.path.join('/', app.settings.fallback)
-                raise y.statuses.found(redurl)
+    if os.path.exists(targetpath):
+        # Generate TOC
+        headings, subdirs = toc.extractdir(targetpath, '', cfg.toc.depth)
+        renderargs['toc'] = headings
+        renderargs['subdirs'] = subdirs
 
     # 404 not found
     if not targetfile or not os.path.isfile(targetfile):
-        if not os.path.isdir(targetpath):
-            raise y.statuses.notfound()
+        return notfound(req, path, **renderargs)
 
-        targetfile = None
-
-    # Generate TOC
-    headings, subdirs = toc.extractdir(targetpath, '', app.settings.toc.depth)
-    t = app.loopkup.get_template(app.settings.template)
-
-    renderargs = dict(
-        title=app.settings.title,
-        hometitle='Home',
-        toc=headings,
-        subdirs=subdirs,
-        metapath=app.settings.metadata.baseurl,
-        paths=os.path.dirname(path).split('/') if path else [],
-    )
-    if not targetfile:
-        return t.render(content='', **renderargs)
-        return
-
+    template = app.loopkup.get_template(cfg.markdown_template)
     with open(targetfile) as f:
-        return t.render(content=markdowner.convert(f.read()), **renderargs)
+        return template.render(
+            content=markdowner.convert(f.read()),
+            **renderargs
+        )
 
 
 @app.when
 def ready(app):
-    app.excludes = [re.compile(p) for p in app.settings.exclude or []]
+    app.excludes = [re.compile(p) for p in cfg.exclude or []]
     app.loopkup = TemplateLookup(
         directories=[os.path.join(here, 'templates')],
-        cache_enabled=not app.settings.debug,
+        cache_enabled=not cfg.debug,
     )
 
     app.staticdirectory(
-        app.settings.metadata.baseurl.replace('.', r'\.') + '/',
-        app.settings.metadata.physical,
+        cfg.metadata.baseurl.replace('.', r'\.') + '/',
+        cfg.metadata.physical,
         default=False,
         autoindex=False,
     )
@@ -177,7 +170,7 @@ def ready(app):
 @app.when
 def shutdown(app):
     app.delete_route(
-        app.settings.metadata.baseurl.replace('.', r'\.') + '/(.*)',
+        cfg.metadata.baseurl.replace('.', r'\.') + '/(.*)',
         'get'
     )
 
@@ -207,9 +200,8 @@ class Serve(easycli.SubCommand):
             if ':' in args.bind else ('localhost', args.bind)
 
         # metadata (favicon, logo and etc)
-        meta = app.settings.metadata
-        if not os.path.isdir(meta.physical):
-            meta.physical = os.path.join(here, 'defaultmetadata')
+        if not os.path.isdir(cfg.metadata.physical):
+            cfg.metadata.physical = os.path.join(here, 'defaultmetadata')
 
         app.ready()
         httpd = make_server(host, int(port), app)

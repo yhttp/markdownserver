@@ -59,35 +59,6 @@ def test_server_exclude(ymdapp, ymdserver, mockupfs):
     ''')
 
 
-def test_server_fallback(ymdapp, ymdserver, mockupfs):
-    root = mockupfs(**{
-        'index.md': '# index',
-        'bar': {
-            'index.md': '# bar index'
-        },
-        'baz': {
-            'baz.md': '# baz'
-        }
-    })
-    ymdapp.settings.root = root
-
-    ymdapp.ready()
-    with ymdserver():
-        assert status == 200
-
-        when(url='/bar.md')
-        assert status == 302
-        assert response.headers['location'] == 'index.md'
-
-        when(url='/bar/bar.md')
-        assert status == 302
-        assert response.headers['location'] == 'index.md'
-
-        when(url='/baz/bar.md')
-        assert status == 302
-        assert response.headers['location'] == '/index.md'
-
-
 def test_server_webmanifest(ymdapp, ymdserver):
     ymdapp.ready()
     with ymdserver('/webmanifest.json'):
@@ -106,3 +77,16 @@ def test_server_webmanifest(ymdapp, ymdserver):
                 },
             ],
         }
+
+
+def test_server_notfound(ymdapp, ymdserver, mockupfs):
+    root = mockupfs(**{
+        'index.md': '# index',
+    })
+    ymdapp.settings.root = root
+    ymdapp.ready()
+    with ymdserver():
+        assert status == 200
+
+        when(url='/bar.md')
+        assert status == 404
