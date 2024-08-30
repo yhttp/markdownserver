@@ -31,7 +31,11 @@
   <noscript>Please enable the Javascript to use ADia.</noscript>
 </head>
 <body>
-
+<%include file="icons.svg"/>
+<!--
+  Usage
+  <svg class="icon"><use xlink:href="#icon-link"/></svg>
+-->
 <header>
   <a href="/">
     <img src="${metapath}/logo.svg" width="100" height="100"/>
@@ -39,12 +43,15 @@
   </a>
 </header>
 <nav>
+
   <a href="/">${hometitle}</a>
   % for p in paths:
     /
     <a href="/${'/'.join(paths[:loop.index + 1])}/">${p}</a>
   % endfor
 </nav>
+
+
 <%def name="rendertoc(items)">
 % if items:
   <ul>
