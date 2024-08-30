@@ -42,7 +42,7 @@ setup(
     ),
     include_package_data=True,
     package_data={'yhttp.markdown': [
-        'yhttp/markdown/master.mako',
+        'yhttp/markdown/templates',
         'yhttp/markdown/static',
         'yhttp/markdown/defaultmetadata',
     ]},

@@ -5,12 +5,11 @@ _builtinsettings = '''
 yhttp:
     debug: false
 
-server:
-    default_document: index.md
-    fallback_document: notfound.md
 
-
+default_document: index.md
+fallback_document: notfound.md
 root: .
+
 title: HTTP Markdown Server
 toc:
     depth: 3
@@ -19,6 +18,8 @@ toc:
 # a list of regex patterns to exclude from TOC and HTTP serve
 exclude:
 
+# template
+template: default.mako
 '''
 
 

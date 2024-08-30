@@ -18,11 +18,11 @@ app = y.Application(version=__version__)
 @app.when
 def ready(app):
     if 'yhttp' in settings:
-        app.settings.merge(settings.server)
+        app.settings.merge(settings.yhttp)
 
     app.excludes = [re.compile(p) for p in settings.exclude or []]
     app.loopkup = TemplateLookup(
-        directories=[here],
+        directories=[os.path.join(here, 'templates')],
         cache_enabled=not settings.yhttp.debug,
     )
 
@@ -79,7 +79,7 @@ def get(req, path=None):
             raise y.statuses.notfound()
 
     # Default document
-    default = settings.server.default_document
+    default = settings.default_document
     if os.path.isdir(targetpath):
         if default:
             default = os.path.join(targetpath, default)
@@ -92,7 +92,7 @@ def get(req, path=None):
 
     # Fallback
     if not targetfile or not os.path.isfile(targetfile):
-        fallback = settings.server.fallback_document
+        fallback = settings.fallback_document
         if fallback:
             fallback = os.path.join(settings.root, fallback)
             if os.path.exists(fallback):
@@ -107,7 +107,7 @@ def get(req, path=None):
 
     # Generate TOC
     headings, subdirs = toc.extractdir(targetpath, '', settings.toc.depth)
-    t = app.loopkup.get_template('master.mako')
+    t = app.loopkup.get_template(settings.template)
 
     renderargs = dict(
         title=settings.title,

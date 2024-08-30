@@ -30,7 +30,7 @@
   </script>
   <noscript>Please enable the Javascript to use ADia.</noscript>
 </head>
-<body onload="load()">
+<body>
 
 <header>
   <a href="/">
