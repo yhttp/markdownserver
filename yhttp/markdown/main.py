@@ -3,8 +3,8 @@ import sys
 
 import easycli
 
-from . import settings, __version__
-from .server import Serve
+from . import __version__
+from .server import app, Serve
 
 
 class Main(easycli.Root):
@@ -32,7 +32,7 @@ class Main(easycli.Root):
             os.chdir(args.directory)
 
         if args.configurationfile:
-            settings.init(args.configurationfile)
+            app.settings.loadfile(args.configurationfile)
 
         return super()._execute_subcommand(args)
 

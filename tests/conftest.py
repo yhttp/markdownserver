@@ -28,5 +28,18 @@ def yapp():
 
 
 @pytest.fixture
-def webapi(yapp):
+def yserver(yapp):
     yield functools.partial(bddrest.Given, yapp)
+
+
+@pytest.fixture
+def ymdapp():
+    from yhttp.markdown.server import app
+
+    yield app
+    app.shutdown()
+
+
+@pytest.fixture
+def ymdserver(ymdapp):
+    yield functools.partial(bddrest.Given, ymdapp)

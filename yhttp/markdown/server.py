@@ -1,4 +1,5 @@
 import os
+import re
 from wsgiref.simple_server import make_server
 
 import easycli
@@ -7,7 +8,6 @@ from mako.lookup import TemplateLookup
 import yhttp.core as y
 
 from . import __version__, toc
-from .settings import settings
 from .markdown import markdowner
 
 
@@ -15,17 +15,33 @@ here = os.path.dirname(__file__)
 app = y.Application(version=__version__)
 
 
-@app.when
-def ready(app):
-    if 'yhttp' in settings:
-        app.settings.merge(settings.yhttp)
+# Builtin configuration
+app.settings.merge('''
+# yhttp debug flag
+debug: true
 
-    app.excludes = [re.compile(p) for p in settings.exclude or []]
-    app.loopkup = TemplateLookup(
-        directories=[os.path.join(here, 'templates')],
-        cache_enabled=not settings.yhttp.debug,
-    )
+# app specific
+default_document: index.md
+fallback_document: notfound.md
+root: .
 
+title: HTTP Markdown Server
+toc:
+    depth: 3
+
+
+# a list of regex patterns to exclude from TOC and HTTP serve
+exclude:
+
+# template
+template: default.mako
+
+# metadata path
+metadata:
+    physical: .ymdmetadata
+    baseurl: /.ymdmetadata
+
+''')
 
 
 def sasscompile(s):
@@ -51,15 +67,16 @@ def get(req, path=None):
 @app.route(r'/webmanifest\.json')
 @y.json
 def get(req):
+    baseurl = app.settings.metadata.baseurl
     return dict(
         icons=[
             dict(
-                src=f'{app.metapath}/android-chrome-192x192.png',
+                src=f'{baseurl}/android-chrome-192x192.png',
                 type='image/png',
                 sizes='192x192'
             ),
             dict(
-                src=f'{app.metapath}/android-chrome-512x512.png',
+                src=f'{baseurl}/android-chrome-512x512.png',
                 type='image/png',
                 sizes='512x512'
             )
@@ -70,7 +87,7 @@ def get(req):
 @y.html
 def get(req, path=None):
     # FIXME: (security) prevent to get parent directories
-    targetpath = os.path.join(settings.root, path or '')
+    targetpath = os.path.join(app.settings.root, path or '')
     targetfile = None
 
     # Check exclusiono
@@ -79,7 +96,7 @@ def get(req, path=None):
             raise y.statuses.notfound()
 
     # Default document
-    default = settings.default_document
+    default = app.settings.default_document
     if os.path.isdir(targetpath):
         if default:
             default = os.path.join(targetpath, default)
@@ -92,9 +109,9 @@ def get(req, path=None):
 
     # Fallback
     if not targetfile or not os.path.isfile(targetfile):
-        fallback = settings.fallback_document
+        fallback = app.settings.fallback_document
         if fallback:
-            fallback = os.path.join(settings.root, fallback)
+            fallback = os.path.join(app.settings.root, fallback)
             if os.path.exists(fallback):
                 targetfile = fallback
 
@@ -106,15 +123,15 @@ def get(req, path=None):
         targetfile = None
 
     # Generate TOC
-    headings, subdirs = toc.extractdir(targetpath, '', settings.toc.depth)
-    t = app.loopkup.get_template(settings.template)
+    headings, subdirs = toc.extractdir(targetpath, '', app.settings.toc.depth)
+    t = app.loopkup.get_template(app.settings.template)
 
     renderargs = dict(
-        title=settings.title,
+        title=app.settings.title,
         hometitle='Home',
         toc=headings,
         subdirs=subdirs,
-        metapath=app.metapath,
+        metapath=app.settings.metadata.baseurl,
         paths=os.path.dirname(path).split('/') if path else [],
     )
     if not targetfile:
@@ -123,6 +140,43 @@ def get(req, path=None):
 
     with open(targetfile) as f:
         return t.render(content=markdowner.convert(f.read()), **renderargs)
+
+
+@app.when
+def ready(app):
+    app.excludes = [re.compile(p) for p in app.settings.exclude or []]
+    app.loopkup = TemplateLookup(
+        directories=[os.path.join(here, 'templates')],
+        cache_enabled=not app.settings.debug,
+    )
+
+    app.staticdirectory(
+        app.settings.metadata.baseurl.replace('.', r'\.') + '/',
+        app.settings.metadata.physical,
+        default=False,
+        autoindex=False,
+    )
+
+    app.staticdirectory(
+        r'/static/',
+        os.path.join(here, 'static/'),
+        default=False,
+        autoindex=False,
+    )
+
+    # default handler
+    app.route('/(.*)')(get)
+
+
+@app.when
+def shutdown(app):
+    app.delete_route(
+        app.settings.metadata.baseurl.replace('.', r'\.') + '/(.*)',
+        'get'
+    )
+
+    app.delete_route(r'/static/(.*)', 'get')
+    app.delete_route('/(.*)', 'get')
 
 
 class Serve(easycli.SubCommand):
@@ -147,27 +201,11 @@ class Serve(easycli.SubCommand):
             if ':' in args.bind else ('localhost', args.bind)
 
         # metadata (favicon, logo and etc)
-        metadir = os.path.join(args.directory, '.ymdmetadata')
-        if not os.path.isdir(metadir):
-            metadir = os.path.join(here, 'defaultmetadata')
+        meta = app.settings.metadata
+        if not os.path.isdir(meta.physical):
+            meta.physical = os.path.join(here, 'defaultmetadata')
 
-        app.metapath = '/.ymdmetadata'
-        app.staticdirectory(
-            r'/\.ymdmetadata/',
-            metadir,
-            default=False,
-            autoindex=False,
-        )
-
-        app.staticdirectory(
-            r'/static/',
-            os.path.join(here, 'static/'),
-            default=False,
-            autoindex=False,
-        )
-        app.route('/(.*)')(get)
         app.ready()
-
         httpd = make_server(host, int(port), app)
         print(f'Markdown server started at http://{host}:{port}')
         try:
