@@ -42,8 +42,9 @@
     <h1>${title}</h1>
   </a>
 </header>
-<nav>
 
+
+<nav>
   <a href="/">${hometitle}</a>
   % for p in paths:
     /
@@ -67,7 +68,7 @@
 
 
 <div class="content">
-  <!-- Sidebar -->
+  <!-- sidebar -->
   <aside>
     % if subdirs:
       <h3>Navigation</h3>
@@ -82,12 +83,17 @@
       ${rendertoc(toc)}
     % endif
   </aside>
+
+  <!-- splitter -->
   <div id="splitter">|</div>
+
   <!-- main content -->
   <main>
     ${content}
   </main>
 </div>
+
+
 <script type="text/javascript" src="/static/index.js"></script>
 </body>
 </html>
