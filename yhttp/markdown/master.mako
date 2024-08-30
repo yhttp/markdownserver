@@ -75,7 +75,7 @@
       ${rendertoc(toc)}
     % endif
   </aside>
-  <div id="splitter" > </div>
+  <div id="splitter">|</div>
   <!-- main content -->
   <main>
     ${content}
