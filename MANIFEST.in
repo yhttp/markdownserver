@@ -1,2 +1,3 @@
 include yhttp/markdown/master.mako
-recursive-include yhttp/markdown/static *.css
+recursive-include yhttp/markdown/static *
+recursive-include yhttp/markdown/defaultmetadata *

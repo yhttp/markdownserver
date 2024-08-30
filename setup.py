@@ -43,7 +43,8 @@ setup(
     include_package_data=True,
     package_data={'yhttp.markdown': [
         'yhttp/markdown/master.mako',
-        'yhttp/markdown/static/*.css'
+        'yhttp/markdown/static',
+        'yhttp/markdown/defaultmetadata',
     ]},
     entry_points={
         'console_scripts': [
