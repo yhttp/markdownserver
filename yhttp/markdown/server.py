@@ -104,9 +104,11 @@ def get(req, path=None):
 
     renderargs = dict(
         title=settings.server.title,
+        hometitle='Home',
         toc=headings,
         subdirs=subdirs,
         metapath=app.metapath,
+        paths=os.path.dirname(path).split('/') if path else [],
     )
     if not targetfile:
         return t.render(content='', **renderargs)

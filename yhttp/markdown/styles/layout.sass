@@ -6,46 +6,56 @@ body
   display: flex
   flex-direction: column
   flex-wrap: nowrap
-  nav
-    flex: 0 1
-    display: flex
+
+
+header
+  flex: 0 1
+  display: flex
+  flex-direction: row
+  padding: $gutter
+  a
+    height: $headersize
+    display: flex 
     flex-direction: row
-    padding: $gutter
-    a
+    margin: $gutter
+    img
+      margin: 0px 2px
+      width: $headersize
       height: $headersize
-      display: flex 
-      flex-direction: row
-      margin: $gutter
-      img
-        margin: 0px 2px
-        width: $headersize
-        height: $headersize
-      h1 
-        margin: 0px
-        height: 100%
-
-  .content
-    overflow-y: auto
-    width: 100%
-    height: 100%
-    display: flex
-    flex-direction: row
-    aside
-      padding: $gutter
-      flex-shrink: 0
-    #splitter
-      width: $gutter
-      flex: 0 0 $gutter
-    main
-      padding: $gutter ($gutter * 4)
-      text-align: justify
+    h1 
+      margin: 0px
+      height: 100%
 
 
-h1, h2, h3, h4, h5, h6
-  margin: ($gutter * 4) 0px ($gutter * 2) 0px 
+nav
+  padding: ($gutter / 2) ($gutter * 2)
+  width: 100%
+  height: 100%
+  flex: 1 0
+
+
+.content
+  overflow-y: auto
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: row
+  aside
+    flex-shrink: 0
+  #splitter
+    width: $gutter
+    flex: 0 0 $gutter
+  main
+    padding: $gutter ($gutter * 4)
+    text-align: justify
+
+
+// h1, h2, h3, h4, h5, h6
+//   margin: ($gutter * 4) 0px ($gutter * 2) 0px 
 
 
 aside
+  padding: $gutter ($gutter * 2)
   h1, h2, h3, h4, h5, h6
     margin-bottom: 0
   ul

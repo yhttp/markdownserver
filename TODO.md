@@ -6,3 +6,4 @@
 - create bookmark button
 - command line argument to set any option
 - raise 404 if file not exists + fallback
+- about page

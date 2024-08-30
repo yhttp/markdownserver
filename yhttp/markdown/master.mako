@@ -32,13 +32,19 @@
 </head>
 <body onload="load()">
 
-<nav id="header">
+<header>
   <a href="/">
     <img src="${metapath}/logo.svg" width="100" height="100"/>
     <h1>${title}</h1>
   </a>
+</header>
+<nav>
+  <a href="/">${hometitle}</a>
+  % for p in paths:
+    /
+    <a href="/${'/'.join(paths[:loop.index + 1])}/">${p}</a>
+  % endfor
 </nav>
-
 <%def name="rendertoc(items)">
 % if items:
   <ul>
@@ -56,15 +62,18 @@
 <div class="content">
   <!-- Sidebar -->
   <aside>
-    <h3>Navigation</h3>
-    <ul>
-    % for h in subdirs:
-      <li><a href="${h}/">${h}</a></li>
-    % endfor
-    </ul>
-    <h3>Table of contents</h3>
-    ${rendertoc(toc)}
-
+    % if subdirs:
+      <h3>Navigation</h3>
+      <ul>
+      % for h in subdirs:
+        <li><a href="${h}/">${h}</a></li>
+      % endfor
+      </ul>
+    % endif
+    % if toc:
+      <h3>Table of contents</h3>
+      ${rendertoc(toc)}
+    % endif
   </aside>
   <div id="splitter" > </div>
   <!-- main content -->
