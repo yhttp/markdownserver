@@ -3,7 +3,7 @@ PKG_NAME = yhttp-markdown
 PYTEST_FLAGS = -vv
 PYDEPS_COMMON = \
 	'coveralls' \
-	'bddrest >= 5.1, < 6' \
+	'bddrest >= 6.1, < 7' \
 	'bddcli >= 2.5.1, < 3' \
 	'yhttp-dev >= 3.2.4' \
 	'requests'
