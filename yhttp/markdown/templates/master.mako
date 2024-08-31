@@ -32,10 +32,7 @@
 </head>
 <body>
 <%include file="icons.svg"/>
-<!--
-  Usage
-  <svg class="icon"><use xlink:href="#icon-link"/></svg>
--->
+
 <header>
   <a href="/">
     <img src="${metapath}/logo.svg" width="100" height="100"/>
@@ -45,12 +42,23 @@
 
 
 <nav>
-  <a href="/">${hometitle}</a>
-  % for p in paths:
-    /
-    <a href="/${'/'.join(paths[:loop.index + 1])}/">${p}</a>
-  % endfor
+  <%self:icon name="home" href="/"/>
+% for p in paths:
+  <span>/</span>
+  <a href="/${'/'.join(paths[:loop.index + 1])}/">${p}</a>
+% endfor
 </nav>
+
+
+<%def name="icon(name, href, id=None)">
+<a href="${href}" class="icon"
+  % if id:
+    id="${id}" 
+  % endif
+  >
+  <svg><use href="#icon-${name}"/></svg>
+</a>
+</%def>
 
 
 <%def name="rendertoc(items)">

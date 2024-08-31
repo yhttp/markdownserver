@@ -99,7 +99,6 @@ def get(req, path=None):
 
     renderargs = dict(
         title=cfg.title,
-        hometitle='Home',
         toc=[],
         subdirs=[],
         metapath=cfg.metadata.baseurl,

@@ -1,5 +1,4 @@
 # Now
-- create bookmark button
 - code blocks + copy icon
 - about page
 - disable text selection on splitter
