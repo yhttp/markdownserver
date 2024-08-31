@@ -1,7 +1,6 @@
 # Now
-- command line argument to set any option
-- all todos
-- all fixmes
+- readme
+- header is too large, decrease the header size
 
 ## later
-- readme
+# cache assets

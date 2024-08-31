@@ -102,3 +102,13 @@ def test_server_notfound(ymdapp, ymdserver, mockupfs):
 
         when(url='/bar.md')
         assert status == 404
+
+
+def test_server_unauthorized(ymdapp, ymdserver, mockupfs):
+    root = mockupfs(**{
+        'index.md': '# index',
+    })
+    ymdapp.settings.root = root
+    ymdapp.ready()
+    with ymdserver('/../foo'):
+        assert status == 403

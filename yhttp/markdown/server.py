@@ -66,7 +66,6 @@ def info(req):
     )
 
 
-# TODO: cache
 @app.route('/index.css')
 @sass
 def get(req, path=None):
@@ -102,7 +101,9 @@ def notfound(req, path, **kw):
 
 @y.html
 def get(req, path=None):
-    # FIXME: (security) prevent to get parent directories
+    if '..' in path:
+        raise y.statuses.forbidden()
+
     targetpath = os.path.join(cfg.root, path or '')
     targetfile = None
 

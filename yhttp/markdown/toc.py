@@ -74,7 +74,6 @@ def extractdir(root, directory, depth=6):
     subdirs = []
     root = os.path.abspath(root)
 
-    # FIXME: prevent to traverse up
     dirpath = os.path.join(root, directory)
     for item in sorted(os.listdir(dirpath)):
         if SYSFILES.match(item):
