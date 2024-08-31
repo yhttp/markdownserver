@@ -110,7 +110,6 @@
 </footer>
 
 
-<script type="text/javascript" src="/static/index.js"></script>
 <script type="module" defer>
   import { z as mermaid} from '/static/mermaid.esm.min.mjs';
   mermaid.initialize({
@@ -128,5 +127,6 @@
       attributeFilter: ['data-processed'] });
   });
 </script>
+<script type="text/javascript" src="/static/index.js"></script>
 </body>
 </html>
