@@ -1,11 +1,14 @@
 html
   line-height: 2rem
-
+  display: flex
+  align-content: stretch
+  align-items: stretch
+  flex-flow: row wrap
 
 body
   display: flex
   flex-direction: column
-  flex-wrap: nowrap
+  width: 100%
 
 
 header
@@ -26,6 +29,22 @@ header
       margin: 0px
 
 
+.content
+  width: 100%
+  display: flex
+  align-content: stretch
+  align-items: stretch
+  flex-direction: row
+  flex: 0 0
+  aside
+    flex-shrink: 0
+  #splitter
+    width: $gutter
+    flex: 0 0 $gutter
+  main
+    padding: $gutter ($gutter * 4)
+    width: 100%
+
 footer
   font-size: .5rem
   padding: 0 ($gutter * 2)
@@ -40,22 +59,6 @@ nav
   flex: 0 0
   span
     margin: 0 $gutter / 4
-
-
-.content
-  width: 100%
-  display: flex
-  align-items: stretch
-  flex-direction: row
-  flex: 1 0
-  aside
-    flex-shrink: 0
-  #splitter
-    width: $gutter
-    flex: 0 0 $gutter
-  main
-    padding: $gutter ($gutter * 4)
-    text-align: justify
 
 
 aside
@@ -92,6 +95,9 @@ aside
 
 
 main
+  max-width: 100%
+  display: inline-block
+  overflow: hidden
   h1, h2, h3, h4, h5, h6
     &:hover button
       opacity: 100%
@@ -105,14 +111,20 @@ main
         opacity: 100%
 
   .codehilite
-    padding: ($gutter / 2) ($gutter / 2) ($gutter / 2) $gutter
+    padding: 0
     margin: $gutter 0
-    pre
+    position: relative
     &:hover button
       opacity: 100%
     button
+      position: absolute
+      right: $gutter / 2
+      top: $gutter / 2
       opacity: 50% 
-      float: right
       &:hover
         opacity: 100%
+    pre
+      padding: $gutter * 2 
+      overflow-x: scroll
+      display: block
 

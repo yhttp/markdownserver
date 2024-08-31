@@ -6,8 +6,7 @@ PYDEPS_COMMON = \
 	'bddrest >= 5.1, < 6' \
 	'bddcli >= 2.5.1, < 3' \
 	'yhttp-dev >= 3.2.4' \
-	'requests' \
-	'libsass'
+	'requests'
 
 
 # Assert the python-makelib version

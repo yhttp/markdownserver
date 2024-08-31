@@ -21,6 +21,7 @@ dependencies = [
     'markdown2',
     'mako',
     'pygments',
+    'libsass',
 ]
 
 
