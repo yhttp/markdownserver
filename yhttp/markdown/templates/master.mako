@@ -100,7 +100,14 @@
   <main>
     ${self.body()}
   </main>
+
 </div>
+
+
+<!-- main footer -->
+<footer>
+  <a href="https://github.com/yhttp/markdown" target="_blank">About</a>
+</footer>
 
 
 <script type="text/javascript" src="/static/index.js"></script>
