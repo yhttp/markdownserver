@@ -45,6 +45,7 @@ setup(
     package_data={'yhttp.markdown': [
         'yhttp/markdown/templates',
         'yhttp/markdown/static',
+        'yhttp/markdown/styles',
         'yhttp/markdown/defaultmetadata',
     ]},
     entry_points={
