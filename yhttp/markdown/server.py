@@ -145,6 +145,10 @@ def get(req, path=None):
 
 @app.when
 def ready(app):
+    # metadata (favicon, logo and etc)
+    if not os.path.isdir(cfg.metadata.physical):
+        cfg.metadata.physical = os.path.join(here, 'defaultmetadata')
+
     app.excludes = [re.compile(p) for p in cfg.exclude or []]
     app.loopkup = TemplateLookup(
         directories=[os.path.join(here, 'templates')],
@@ -200,10 +204,6 @@ class Serve(easycli.SubCommand):
         """
         host, port = args.bind.split(':')\
             if ':' in args.bind else ('localhost', args.bind)
-
-        # metadata (favicon, logo and etc)
-        if not os.path.isdir(cfg.metadata.physical):
-            cfg.metadata.physical = os.path.join(here, 'defaultmetadata')
 
         app.ready()
         httpd = make_server(host, int(port), app)
