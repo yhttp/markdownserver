@@ -5,4 +5,3 @@
 
 ## later
 - readme
-- debug: true on deploy
