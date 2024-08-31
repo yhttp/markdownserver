@@ -111,5 +111,22 @@
 
 
 <script type="text/javascript" src="/static/index.js"></script>
+<script type="module" defer>
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+  mermaid. Initialize({
+    securityLevel: 'loose',
+    startOnLoad: true
+  });
+  let observer = new MutationObserver(mutations => {
+    for(let mutation of mutations) {
+      mutation.target.style.visibility = "visible";
+    }
+  });
+  document.querySelectorAll("pre.mermaid-pre div.mermaid").forEach(item => {
+    observer.observe(item, { 
+      attributes: true, 
+      attributeFilter: ['data-processed'] });
+  });
+</script>
 </body>
 </html>

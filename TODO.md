@@ -5,4 +5,5 @@
   - screenshot
 
 ## later
-# cache assets
+- mermaid styles
+- cache assets

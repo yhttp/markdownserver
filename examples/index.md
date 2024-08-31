@@ -59,3 +59,14 @@ class Main(easycli.Root):
 
         self._parser.print_help()
 ```
+
+
+## Mermaid
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
