@@ -6,12 +6,12 @@
 
 ### Request Headers
 
-* Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc
+* Authorization: Bearer eyJhbG...vjN0In58SH-kc
 
 ### CURL
 
 ```bash
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 200 OK
@@ -25,7 +25,22 @@ curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwi
 Content-Type: application/json
 
 ```json
-{"nickname":"god","nickname_isdirty":true,"timezone":"00:00","locale":null,"avatar":null,"roles":["god"],"created_at":"2024-08-22T03:30:00","modified_at":"2024-08-22T03:30:00","id":1,"email":"god@ayot.net","name":"God","phone":null}
+{
+  "nickname": "god",
+  "nickname_isdirty": true,
+  "timezone": "00:00",
+  "locale": null,
+  "avatar": null,
+  "roles": [
+    "god"
+  ],
+  "created_at": "2024-08-22T03:30:00",
+  "modified_at": "2024-08-22T03:30:00",
+  "id": 1,
+  "email": "god@ayot.net",
+  "name": "God",
+  "phone": null
+}
 ```
 
 ---
@@ -55,7 +70,7 @@ curl -- "$URL/profiles/me"
 ### CURL
 
 ```bash
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 404 Not Found
@@ -77,12 +92,12 @@ phone | ? | ? | +98 (912) 111 1111
 
 ### Request Headers
 
-* Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc
+* Authorization: Bearer eyJhbG...vjN0In58SH-kc
 
 ### CURL
 
 ```bash
-curl -X UPDATE -F "name=Bob" -F "phone=+98 (912) 111 1111" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "name=Bob" -F "phone=+98 (912) 111 1111" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 200 OK
@@ -96,7 +111,22 @@ curl -X UPDATE -F "name=Bob" -F "phone=+98 (912) 111 1111" -H "Authorization: Be
 Content-Type: application/json
 
 ```json
-{"nickname":"god","nickname_isdirty":true,"timezone":"00:00","locale":null,"avatar":null,"roles":["god"],"created_at":"2024-08-22T03:30:00","modified_at":"2024-08-22T03:30:00","id":1,"email":"god@ayot.net","name":"Bob","phone":"+98 (912) 111 1111"}
+{
+  "nickname": "god",
+  "nickname_isdirty": true,
+  "timezone": "00:00",
+  "locale": null,
+  "avatar": null,
+  "roles": [
+    "god"
+  ],
+  "created_at": "2024-08-22T03:30:00",
+  "modified_at": "2024-08-22T03:30:00",
+  "id": 1,
+  "email": "god@ayot.net",
+  "name": "Bob",
+  "phone": "+98 (912) 111 1111"
+}
 ```
 
 ---
@@ -114,7 +144,7 @@ nickname | ? | ? |
 ### CURL
 
 ```bash
-curl -X UPDATE -F "nickname=" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "nickname=" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 701 nickname: Length must be between 1 and 12 characters
@@ -138,7 +168,7 @@ nickname | ? | ? | xxxxxxxxxxxxx
 ### CURL
 
 ```bash
-curl -X UPDATE -F "nickname=xxxxxxxxxxxxx" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "nickname=xxxxxxxxxxxxx" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 701 nickname: Length must be between 1 and 12 characters
@@ -162,7 +192,7 @@ nickname | ? | ? | Bob
 ### CURL
 
 ```bash
-curl -X UPDATE -F "nickname=Bob" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "nickname=Bob" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 200 OK
@@ -176,7 +206,22 @@ curl -X UPDATE -F "nickname=Bob" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsI
 Content-Type: application/json
 
 ```json
-{"nickname":"Bob","nickname_isdirty":false,"timezone":"00:00","locale":null,"avatar":null,"roles":["god"],"created_at":"2024-08-22T03:30:00","modified_at":"2024-08-22T03:30:00","id":1,"email":"god@ayot.net","name":"Bob","phone":"+98 (912) 111 1111"}
+{
+  "nickname": "Bob",
+  "nickname_isdirty": false,
+  "timezone": "00:00",
+  "locale": null,
+  "avatar": null,
+  "roles": [
+    "god"
+  ],
+  "created_at": "2024-08-22T03:30:00",
+  "modified_at": "2024-08-22T03:30:00",
+  "id": 1,
+  "email": "god@ayot.net",
+  "name": "Bob",
+  "phone": "+98 (912) 111 1111"
+}
 ```
 
 ---
@@ -194,7 +239,7 @@ locale | ? | ? | en-US
 ### CURL
 
 ```bash
-curl -X UPDATE -F "locale=en-US" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "locale=en-US" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 200 OK
@@ -208,7 +253,22 @@ curl -X UPDATE -F "locale=en-US" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsI
 Content-Type: application/json
 
 ```json
-{"nickname":"Bob","nickname_isdirty":false,"timezone":"00:00","locale":"en-US","avatar":null,"roles":["god"],"created_at":"2024-08-22T03:30:00","modified_at":"2024-08-22T03:30:00","id":1,"email":"god@ayot.net","name":"Bob","phone":"+98 (912) 111 1111"}
+{
+  "nickname": "Bob",
+  "nickname_isdirty": false,
+  "timezone": "00:00",
+  "locale": "en-US",
+  "avatar": null,
+  "roles": [
+    "god"
+  ],
+  "created_at": "2024-08-22T03:30:00",
+  "modified_at": "2024-08-22T03:30:00",
+  "id": 1,
+  "email": "god@ayot.net",
+  "name": "Bob",
+  "phone": "+98 (912) 111 1111"
+}
 ```
 
 ---
@@ -226,7 +286,7 @@ timezone | ? | ? | +03:30
 ### CURL
 
 ```bash
-curl -X UPDATE -F "timezone=+03:30" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "timezone=+03:30" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 200 OK
@@ -240,7 +300,22 @@ curl -X UPDATE -F "timezone=+03:30" -H "Authorization: Bearer eyJhbGciOiJIUzI1Ni
 Content-Type: application/json
 
 ```json
-{"nickname":"Bob","nickname_isdirty":false,"timezone":"+03:30","locale":"en-US","avatar":null,"roles":["god"],"created_at":"2024-08-22T03:30:00","modified_at":"2024-08-22T03:30:00","id":1,"email":"god@ayot.net","name":"Bob","phone":"+98 (912) 111 1111"}
+{
+  "nickname": "Bob",
+  "nickname_isdirty": false,
+  "timezone": "+03:30",
+  "locale": "en-US",
+  "avatar": null,
+  "roles": [
+    "god"
+  ],
+  "created_at": "2024-08-22T03:30:00",
+  "modified_at": "2024-08-22T03:30:00",
+  "id": 1,
+  "email": "god@ayot.net",
+  "name": "Bob",
+  "phone": "+98 (912) 111 1111"
+}
 ```
 
 ---
@@ -252,7 +327,7 @@ Content-Type: application/json
 ### CURL
 
 ```bash
-curl -X UPDATE -F "name=Bob" -F "phone=+98 (912) 111 1111" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI0Mjg4NDAwLCJuaWNrbmFtZSI6ImdvZCIsInRpbWV6b25lIjoiMDA6MDAiLCJsb2NhbGUiOm51bGwsImF2YXRhciI6bnVsbCwicm9sZXMiOlsiZ29kIl19.oLfFxr1QNLYSfg-XDEc94-pFpXSzGCvjN0In58SH-kc" -- "$URL/profiles/me"
+curl -X UPDATE -F "name=Bob" -F "phone=+98 (912) 111 1111" -H "Authorization: Bearer eyJhbG...vjN0In58SH-kc" -- "$URL/profiles/me"
 ```
 
 ### Response: 404 Not Found

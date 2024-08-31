@@ -14,8 +14,8 @@ curl -- "$URL/tokens/google/oauth2"
 
 #### Headers
 
-* location: https://accounts.google.com/o/oauth2/v2/auth?client_id=foobarbaz&response_type=code&scope=openid%20email%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Ftokens%2Fgoogle%2Fcb&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiZjgyNTEwOTMzYjAwMTliOTE4MmY2ZDAxNWEwODYxYWEzNzk1M2ZkZjViZWIxNzlmZGJlZTA0ODViMTQyOTlmOCJ9.z_vmLYQTw7PUeX3yhB7Sdec7puuqvH24ne5nR_hY4JY&access_type=offline
-* set-cookie: yhttp-csrf-token=f82510933b0019b9182f6d015a0861aa37953fdf5beb179fdbee0485b14299f8; HttpOnly; Max-Age=60; Path=/tokens/google/oauth2; SameSite=Strict; Secure
+* location: https://accounts.google.com/o/oauth2/v2/auth?client_id=foobarbaz&response_type=code&scope=openid%20email%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Ftokens%2Fgoogle%2Fcb&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiZDI5ZWU5ZTc5ZWJmYTVkNGFkMmZhMTViMjcxOWY4OTNiZjNlY2FiYTdhODNkMDNmYTUyYjdmMzk1OGJkMmJjYyJ9.0xtCx-LA2F_MMJAuY5ceYnZlf6euQVQlgVc2etmJeLU&access_type=offline
+* set-cookie: yhttp-csrf-token=d29ee9e79ebfa5d4ad2fa15b2719f893bf3ecaba7a83d03fa52b7f3958bd2bcc; HttpOnly; Max-Age=60; Path=/tokens/google/oauth2; SameSite=Strict; Secure
 * content-length: 0
 
 ---
@@ -26,20 +26,20 @@ curl -- "$URL/tokens/google/oauth2"
 
 ### Request Headers
 
-* cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI2ODgxMzcxLCJlbWFpbCI6ImdvZEBheW90Lm5ldCJ9.XcLGlUF65ZNZiyohF-h-mWJWm9zry9iGS22L8Wwf0Jc
+* cookie: yhttp-refresh...iGS22L8Wwf0Jc
 
 ### CURL
 
 ```bash
-curl -H "cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI2ODgxMzcxLCJlbWFpbCI6ImdvZEBheW90Lm5ldCJ9.XcLGlUF65ZNZiyohF-h-mWJWm9zry9iGS22L8Wwf0Jc" -- "$URL/tokens/google/oauth2"
+curl -H "cookie: yhttp-refresh...iGS22L8Wwf0Jc" -- "$URL/tokens/google/oauth2"
 ```
 
 ### Response: 302 Found
 
 #### Headers
 
-* location: https://accounts.google.com/o/oauth2/v2/auth?client_id=foobarbaz&response_type=code&scope=openid%20email%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Ftokens%2Fgoogle%2Fcb&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0&access_type=offline&login_hint=god%40ayot.net
-* set-cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574; HttpOnly; Max-Age=60; Path=/tokens/google/oauth2; SameSite=Strict; Secure
+* location: https://accounts.google.com/o/oauth2/v2/auth?client_id=foobarbaz&response_type=code&scope=openid%20email%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Ftokens%2Fgoogle%2Fcb&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI&access_type=offline&login_hint=god%40ayot.net
+* set-cookie: yhttp-csrf-token=5cf424f4a7c039bdafd04b2084be0889d07c53d650daeaa87e7f10583893365f; HttpOnly; Max-Age=60; Path=/tokens/google/oauth2; SameSite=Strict; Secure
 * content-length: 0
 
 ---

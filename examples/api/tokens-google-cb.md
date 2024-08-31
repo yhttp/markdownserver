@@ -10,16 +10,16 @@ Name | Example
 --- | ---
 code | 4/0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg
 scope | email+profile+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile+openid
-state | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0
+state | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI
 
 ### Request Headers
 
-* Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574
+* Cookie: yhttp-csrf-to...f10583893365f
 
 ### CURL
 
 ```bash
-curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0"
+curl -H "Cookie: yhttp-csrf-to...f10583893365f" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI"
 ```
 
 ### Response: 302 Found
@@ -27,7 +27,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 #### Headers
 
 * location: http://localhost:8080
-* set-cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI3MjkwMjIyLCJyb2xlcyI6WyJnb2QiXX0.vAXoLxsLp8TnwZV5O50IPoiOU2T9LXw2GdO-FTV-T_Y; HttpOnly; Max-Age=2592000; Path=/tokens/google/cb; SameSite=Strict; Secure
+* set-cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI3NzMzOTg2LCJyb2xlcyI6WyJnb2QiXX0.3L2cAz1-WsTeZ2jvZyEReqlKnlbGYwcwoKw3w5hLGDA; HttpOnly; Max-Age=2592000; Path=/tokens/google/cb; SameSite=Strict; Secure
 * content-length: 0
 
 ---
@@ -39,7 +39,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 ### CURL
 
 ```bash
-curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0"
+curl -H "Cookie: yhttp-csrf-to...f10583893365f" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI"
 ```
 
 ### Response: 302 Found
@@ -47,7 +47,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 #### Headers
 
 * location: http://localhost:8080
-* set-cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI3MjkwMjIyLCJyb2xlcyI6WyJnb2QiXX0.vAXoLxsLp8TnwZV5O50IPoiOU2T9LXw2GdO-FTV-T_Y; HttpOnly; Max-Age=2592000; Path=/tokens/google/cb; SameSite=Strict; Secure
+* set-cookie: yhttp-refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVmcmVzaCI6dHJ1ZSwiZXhwIjoxNzI3NzMzOTg2LCJyb2xlcyI6WyJnb2QiXX0.3L2cAz1-WsTeZ2jvZyEReqlKnlbGYwcwoKw3w5hLGDA; HttpOnly; Max-Age=2592000; Path=/tokens/google/cb; SameSite=Strict; Secure
 * content-length: 0
 
 ---
@@ -59,7 +59,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 ### CURL
 
 ```bash
-curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0"
+curl -H "Cookie: yhttp-csrf-to...f10583893365f" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI"
 ```
 
 ### Response: 401 Unauthorized
@@ -77,7 +77,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 ### CURL
 
 ```bash
-curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0"
+curl -H "Cookie: yhttp-csrf-to...f10583893365f" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI"
 ```
 
 ### Response: 401 Unauthorized
@@ -95,7 +95,7 @@ curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc69
 ### CURL
 
 ```bash
-curl -H "Cookie: yhttp-csrf-token=3faad4446b01ce34cb98c4f29ed5a0520d414f002efc6953ba725d5cdb0ce574" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ2OTgyODIsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiM2ZhYWQ0NDQ2YjAxY2UzNGNiOThjNGYyOWVkNWEwNTIwZDQxNGYwMDJlZmM2OTUzYmE3MjVkNWNkYjBjZTU3NCJ9.pkQ_qK19cDEJAWScWlGnyPijPRu0J-_TOOIGP1aXRi0"
+curl -H "Cookie: yhttp-csrf-to...f10583893365f" -- "$URL/tokens/google/cb?code=4%2F0AX4XfWitAl4eZ2U7eJ7CYbFgl0HrKjUxrAuD5TiXfOV1ZHfcSWjxM1u6z_w8IZMXlLuJLg&scope=email%2Bprofile%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%2Bopenid&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUxNDIwNDYsInJlZHVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlkIjoiNWNmNDI0ZjRhN2MwMzliZGFmZDA0YjIwODRiZTA4ODlkMDdjNTNkNjUwZGFlYWE4N2U3ZjEwNTgzODkzMzY1ZiJ9.pNaFh2VW78WMA0ls93eY4cBGlLNvUKxuVRe6fT1ZDaI"
 ```
 
 ### Response: 401 Unauthorized
