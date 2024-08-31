@@ -182,34 +182,3 @@ def shutdown(app):
 
     app.delete_route(r'/static/(.*)', 'get')
     app.delete_route('/(.*)', 'get')
-
-
-class Serve(easycli.SubCommand):
-    _default_bind = '8080'
-    __command__ = 'serve'
-    __aliases__ = ['s']
-    __arguments__ = [
-        easycli.Argument(
-            '-b', '--bind',
-            default=_default_bind,
-            metavar='{HOST:}PORT',
-            help='Bind Address. default: %s' % _default_bind
-        ),
-    ]
-
-    def __call__(self, args):  # pragma: no cover
-        """the no cover pragma was set, because the coverae meassurement in
-        subprocess is so complicated, but this function is covered by
-        test_builtincli.py.
-        """
-        host, port = args.bind.split(':')\
-            if ':' in args.bind else ('localhost', args.bind)
-
-        app.ready()
-        httpd = make_server(host, int(port), app)
-        print(f'Markdown server started at http://{host}:{port}')
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("CTRL+C pressed.")
-            app.shutdown()

@@ -15,7 +15,7 @@ with open(
 
 
 dependencies = [
-    'yhttp >= 6.1, < 7',
+    'yhttp >= 6.1.2, < 7',
     'pymlconf',
     'easycli',
     'markdown2',
@@ -49,7 +49,7 @@ setup(
     ]},
     entry_points={
         'console_scripts': [
-            'yhttp-markdown = yhttp.markdown.main:Main.quickstart'
+            'yhttp-markdown = yhttp.markdown.server:app.climain'
         ]
     },
     classifiers=[
