@@ -1,8 +1,6 @@
 import os
 import re
-from wsgiref.simple_server import make_server
 
-import easycli
 import sass as libsass
 from mako.lookup import TemplateLookup
 import yhttp.core as y
@@ -17,9 +15,9 @@ cfg = app.settings
 
 
 # Builtin configuration
-cfg.merge('''
+cfg.merge(f'''
 # yhttp debug flag
-debug: true
+debug: {os.environ.get("YHTTP_DEBUG", "false")}
 
 # app specific
 default: index.md
@@ -57,6 +55,15 @@ def sasscompile(s):
 
 
 sass = y.utf8('text/css', dump=sasscompile)
+
+
+@app.route()
+@y.json
+def info(req):
+    return dict(
+        version=app.version,
+        debug=cfg.debug
+    )
 
 
 # TODO: cache

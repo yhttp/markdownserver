@@ -26,5 +26,10 @@ endif
 include $(PYTHON_MAKELIB_PATH)/venv-lint-test-webapi.mk
 
 
+# Run in debug mode
+YHTTP_DEBUG = true
+export YHTTP_DEBUG
+
+
 serve:
 	$(PREFIX)/bin/yhttp-markdown -Cexamples serve

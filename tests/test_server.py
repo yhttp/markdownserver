@@ -1,5 +1,17 @@
 from bddrest import status, response, when
 
+from yhttp.markdown import __version__
+
+
+def test_server_info(ymdapp, ymdserver):
+    ymdapp.ready()
+    with ymdserver(verb='info'):
+        assert status == 200
+        assert response.json == dict(
+            version=__version__,
+            debug=True,
+        )
+
 
 def test_server_index(ymdapp, ymdserver, mockupfs):
     root = mockupfs(**{

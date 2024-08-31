@@ -17,7 +17,7 @@ GITHUBACTIONS = 'CI' in os.environ and os.environ['CI'] \
 def cliapp():
     cliapp = bddcli.Application(
         'yhttp-markdown',
-        'yhttp.markdown.main:Main.quickstart'
+        'yhttp.markdown.server:app.climain'
     )
     return functools.partial(bddcli.Given, cliapp)
 
