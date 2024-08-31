@@ -42,6 +42,8 @@ metadata:
     physical: .ymdmetadata
     baseurl: /.ymdmetadata
 
+highlight:
+    theme: monokai
 ''')
 
 
@@ -103,6 +105,7 @@ def get(req, path=None):
         subdirs=[],
         metapath=cfg.metadata.baseurl,
         paths=os.path.dirname(path).split('/') if path else [],
+        highlighttheme=cfg.highlight.theme,
     )
 
     # Check exclusiono

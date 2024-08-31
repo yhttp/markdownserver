@@ -20,6 +20,7 @@ dependencies = [
     'easycli',
     'markdown2',
     'mako',
+    'pygments',
 ]
 
 

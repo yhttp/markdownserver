@@ -4,6 +4,7 @@ import markdown2
 extras = [
     'header-ids',
     'tables',
+    'fenced-code-blocks',
 ]
 
 

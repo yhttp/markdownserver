@@ -17,6 +17,7 @@
 
   <!-- styles -->
   <link rel="stylesheet" href="/index.css" >
+  <link rel="stylesheet" href="/static/highlight/${highlighttheme}.css" >
   
   <!-- scripts -->
   <script>
