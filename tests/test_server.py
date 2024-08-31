@@ -20,14 +20,14 @@ def test_server_index(ymdapp, ymdserver, mockupfs):
 
     ymdapp.settings.root = root
     ymdapp.ready()
-    with ymdserver(url='/index.md'):
+    with ymdserver(path='/index.md'):
         assert status == 200
         assert response.text.startswith('<!DOCTYPE html>')
 
 
 def test_server_css(ymdapp, ymdserver):
     ymdapp.ready()
-    with ymdserver(url='/index.css'):
+    with ymdserver(path='/index.css'):
         assert status == 200
         assert response.text.startswith('/* yhttp-markdown css */')
 
@@ -53,16 +53,16 @@ def test_server_exclude(ymdapp, ymdserver, mockupfs):
         assert status == 200
         assert response.text.startswith('<!DOCTYPE html>')
 
-        when(url='/index.md')
+        when(path='/index.md')
         assert status == 200
 
-        when(url='/foo.md')
+        when(path='/foo.md')
         assert status == 404
 
-        when(url='/bar')
+        when(path='/bar')
         assert status == 404
 
-        when(url='/bar/index.md')
+        when(path='/bar/index.md')
         assert status == 404
 
     ymdapp.settings.merge('''
@@ -100,7 +100,7 @@ def test_server_notfound(ymdapp, ymdserver, mockupfs):
     with ymdserver():
         assert status == 200
 
-        when(url='/bar.md')
+        when(path='/bar.md')
         assert status == 404
 
 
