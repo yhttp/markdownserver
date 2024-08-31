@@ -15,14 +15,17 @@ cfg = app.settings
 
 
 # Builtin configuration
-cfg.merge(f'''
+cfg.merge('''
 # yhttp debug flag
-debug: {os.environ.get("YHTTP_DEBUG", "false")}
+debug: false
+
 
 # app specific
 default: index.md
 root: .
 
+
+# site title
 title: HTTP Markdown Server
 toc:
     depth: 3
@@ -31,15 +34,19 @@ toc:
 # a list of regex patterns to exclude from TOC and HTTP serve
 exclude:
 
-# templates
+
+# mako templates
 markdown_template: default.mako
 notfound_template: notfound.mako
+
 
 # metadata path
 metadata:
     physical: .ymdmetadata
     baseurl: /.ymdmetadata
 
+
+# syntaxt highlighting theme
 highlight:
     theme: monokai
 ''')
