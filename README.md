@@ -82,7 +82,7 @@ yhttp-markdown TAB TAB
 ## Configuration
 
 `yhttp-markdown` can be configured using a YAML configuration file 
-(the `-c/--configuration-file` and `-O/--option` flags at the same time:
+(the `-c/--configuration-file`) and `-O/--option` flags at the same time:
 
 ```bash
 yhttp-markdown -c settings.yaml -O highlight.theme=vim -O toc.depth=2 serve
