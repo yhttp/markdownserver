@@ -156,3 +156,46 @@ def test_toc_extract_backwardgap():
             'children': [],
         },
     ]
+
+
+def test_toc_extract_codeblocks():
+    doc = '''
+    # Foo
+    ```
+    # qux
+    foobar foobaz
+    ```
+    ## Bar
+    ### Baz
+    # Quux
+    '''
+
+    out = toc.extract('foobarbaz.md', doc.splitlines())
+    assert out == [
+        {
+            'href': 'foobarbaz.md#foo',
+            'level': 1,
+            'title': 'Foo',
+            'children': [
+                {
+                    'href': 'foobarbaz.md#bar',
+                    'level': 2,
+                    'title': 'Bar',
+                    'children': [
+                        {
+                            'href': 'foobarbaz.md#baz',
+                            'level': 3,
+                            'title': 'Baz',
+                            'children': [],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            'href': 'foobarbaz.md#quux',
+            'level': 1,
+            'title': 'Quux',
+            'children': [],
+        },
+    ]

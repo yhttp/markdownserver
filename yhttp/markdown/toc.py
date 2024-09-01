@@ -3,14 +3,22 @@ import re
 import sys
 
 
+CODEBLOCK = re.compile(r'^\s*`{3}.*')
 HEADING = re.compile(r'^\s*(#{1,6}) (.*)')
 SYSFILES = re.compile(r'^\..*')
 
 
 def _headings(lines):
+    codeblock = False
     lineno = 0
 
     for l in lines:
+        if CODEBLOCK.match(l):
+            codeblock ^= True
+
+        if codeblock:
+            continue
+
         lineno += 1
         m = HEADING.match(l)
         if not m:
