@@ -116,7 +116,7 @@ def get(req, path=None):
     targetfile = None
 
     renderargs = dict(
-        title=cfg.title,
+        cfg=cfg,
         version=__version__,
         toc=[],
         subdirs=[],

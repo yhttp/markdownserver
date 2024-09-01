@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <title>${cfg.title}</title>
 
   <!-- favicon -->
   <link rel="icon" href="${metapath}/favicon-32x32.png" sizes="32x32" />
@@ -37,7 +38,7 @@
 <header>
   <a href="/">
     <img src="${metapath}/logo.svg" width="100" height="100"/>
-    <h1>${title}</h1>
+    <h1>${cfg.title}</h1>
     <small>v${version}</small>
   </a>
 </header>
