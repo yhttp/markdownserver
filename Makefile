@@ -3,14 +3,14 @@ PKG_NAME = yhttp-markdown
 PYTEST_FLAGS = -vv
 PYDEPS_COMMON = \
 	'coveralls' \
-	'bddrest >= 6.1, < 7' \
+	'bddrest >= 6.1.1, < 7' \
 	'bddcli >= 2.5.1, < 3' \
 	'yhttp-dev >= 3.2.4' \
 	'requests'
 
 
 # Assert the python-makelib version
-PYTHON_MAKELIB_VERSION_REQUIRED = 1.5.4
+PYTHON_MAKELIB_VERSION_REQUIRED = 1.5.5
 
 
 # Ensure the python-makelib is installed
