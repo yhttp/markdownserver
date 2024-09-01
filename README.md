@@ -21,6 +21,9 @@ Markdown server using yhttp.
 - [mermaid](https://mermaid.js.org/) support.
 
 
+![yhttp-markdown](https://raw.githubusercontent.com/yhttp/markdown/master/examples/screenshot.png)
+
+
 ## Install
 ```bash
 pip install yhttp-markdown
