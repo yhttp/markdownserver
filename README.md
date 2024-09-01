@@ -15,7 +15,7 @@ Markdown server using yhttp.
 - Syntaxt highlighting for code blocks + themes using
     [pygment](https://pygments.org/).
 - Copy-to-clipboard buttons for code-blocks and HTML bookmarks.
-- Resizable sidebat and page layout powered by CSS Flexbox.
+- Resizable sidebar and page layout powered by CSS Flexbox.
 - Breadcrumbs (path) navigator.
 - Change configuration using file and command line interface.
 - [mermaid](https://mermaid.js.org/) support.
@@ -106,7 +106,7 @@ title: HTTP Markdown Server
 
 # table of contents
 toc:
-    depth: 3
+  depth: 3
 
 
 # a list of regex patterns to exclude from TOC and HTTP serve
@@ -115,13 +115,13 @@ exclude:
 
 # metadata path
 metadata:
-    physical: .ymdmetadata
-    baseurl: /.ymdmetadata
+  physical: .ymdmetadata
+  baseurl: /.ymdmetadata
 
 
 # syntaxt highlighting theme
 highlight:
-    theme: monokai
+  theme: monokai
 ```
 
 
@@ -141,13 +141,19 @@ yhttp-markdown -O root=/path/to/www/root serve
 ```
 
 
+You may also use the `-C/--directory` command line option to `cd` to a 
+directory before running the server.
+```bash
+yhttp-markdown -C /path/to/www/root serve
+```
+
 ### Default document
 `yhttp-markdown` looks for the `index.md` on requests referring to a 
 directory (http://example.com/foo/). but, this can be changed using the 
 `default` configuration entry:
 
 ```yaml
-# yhttp-markdown configuration file
+# settings.yaml
 
 default: default.md
 ```
@@ -188,8 +194,8 @@ root (`/`):
 # settings.yaml
 
 exclude:
-    - foo\\.md
-    - bar/?.*
+  - foo\\.md
+  - bar/?.*
 ```
 
 Or, using the command line interface:
@@ -222,8 +228,8 @@ The name and base path are also changable using the `metadata.physical` and
 # settings.yaml
 
 metadata:
-    physical: .ymdmetadata
-    baseurl: /.ymdmetadata
+  physical: .ymdmetadata
+  baseurl: /.ymdmetadata
 ```
 
 
@@ -239,7 +245,7 @@ entry:
 # settings.yaml
 
 highlight:
-    theme: monokai
+  theme: monokai
 ```
 
 Or, using the command line interface:
