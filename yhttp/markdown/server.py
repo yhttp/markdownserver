@@ -117,6 +117,7 @@ def get(req, path=None):
 
     renderargs = dict(
         title=cfg.title,
+        version=__version__,
         toc=[],
         subdirs=[],
         metapath=cfg.metadata.baseurl,

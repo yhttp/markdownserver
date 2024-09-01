@@ -38,6 +38,7 @@
   <a href="/">
     <img src="${metapath}/logo.svg" width="100" height="100"/>
     <h1>${title}</h1>
+    <small>v${version}</small>
   </a>
 </header>
 
