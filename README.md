@@ -128,7 +128,7 @@ you may navigate to desired path before running the `yhttp-markdown` command
 or set the `root` configuration entry:
 
 ```yaml
-# yhttp-markdown configuration file
+# settings.yaml
 
 root: path/to/www/root
 ```
@@ -269,7 +269,38 @@ See [pygments styles page](https://pygments.org/styles/) to figure out how
 they looks like.
 
 
-## See tests directory
 ## Contribuition
 
+### Setup development environment
 
+Install [python-makelib](https://github.com/pylover/python-makelib), then:
+```bash
+cd path/to/yhttp-markdown
+make fresh env activate.sh
+```
+
+### Test and coverage
+```bash
+make test
+make cover
+```
+
+### Lint
+```bash
+make lint
+```
+
+
+### Serve
+```bash
+make serve
+```
+
+Or
+```bash
+source activate.sh
+yhttp-markdown -C examples serve
+```
+
+
+> **_NOTE:_**  Do a `make qa` or `make cover lint` before commit.
