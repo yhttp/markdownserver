@@ -68,18 +68,20 @@ def extract(filename, lines, depth=6):
     return headings
 
 
-def extractdir(root, directory, depth=6):
+def extractdir(directory, excluded=None, depth=6):
     headings = []
     stack = [headings]
     subdirs = []
-    root = os.path.abspath(root)
+    directory = os.path.abspath(directory)
 
-    dirpath = os.path.join(root, directory)
-    for item in sorted(os.listdir(dirpath)):
+    for item in sorted(os.listdir(directory)):
         if SYSFILES.match(item):
             continue
 
-        filepath = os.path.join(dirpath, item)
+        if excluded and excluded(item):
+            continue
+
+        filepath = os.path.join(directory, item)
         if os.path.isdir(filepath):
             subdirs.append(item)
             continue
@@ -90,7 +92,7 @@ def extractdir(root, directory, depth=6):
         with open(filepath) as file:
             _extract(
                 stack,
-                os.path.relpath(filepath, root),
+                os.path.relpath(filepath, directory),
                 file,
                 depth
             )

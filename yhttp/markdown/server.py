@@ -1,5 +1,6 @@
 import os
 import re
+import functools
 
 import sass as libsass
 from mako.lookup import TemplateLookup
@@ -124,9 +125,8 @@ def get(req, path=None):
     )
 
     # Check exclusiono
-    for pat in app.excludes:
-        if pat.match(path):
-            return notfound(req, path, **renderargs)
+    if app.excluded(path):
+        return notfound(req, path, **renderargs)
 
     # Default document
     default = cfg.default
@@ -142,7 +142,11 @@ def get(req, path=None):
 
     if os.path.exists(targetpath):
         # Generate TOC
-        headings, subdirs = toc.extractdir(targetpath, '', cfg.toc.depth)
+        headings, subdirs = toc.extractdir(
+            targetpath,
+            app.excluded,
+            depth=cfg.toc.depth,
+        )
         renderargs['toc'] = headings
         renderargs['subdirs'] = subdirs
 
@@ -158,13 +162,25 @@ def get(req, path=None):
         )
 
 
+def _excluded(patterns, path):
+    for pat in patterns:
+        if pat.match(path):
+            return True
+
+    return False
+
+
 @app.when
 def ready(app):
     # metadata (favicon, logo and etc)
     if not os.path.isdir(cfg.metadata.physical):
         cfg.metadata.physical = os.path.join(here, 'defaultmetadata')
 
-    app.excludes = [re.compile(p) for p in cfg.exclude or []]
+    app.excluded = functools.partial(
+        _excluded,
+        [re.compile(p) for p in cfg.exclude or []]
+    )
+
     app.loopkup = TemplateLookup(
         directories=[os.path.join(here, 'templates')],
         cache_enabled=not cfg.debug,

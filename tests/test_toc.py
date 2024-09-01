@@ -12,7 +12,7 @@ def test_toc_extractdir(mockupfs):
         '.qux.md': '## qux',
     })
 
-    headings, subdirs = toc.extractdir(root, '.')
+    headings, subdirs = toc.extractdir(root)
     assert subdirs == ['bar']
     assert headings == [
         {
