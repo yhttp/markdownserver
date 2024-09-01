@@ -124,7 +124,7 @@ def get(req, path=None):
         highlighttheme=cfg.highlight.theme,
     )
 
-    # Check exclusiono
+    # Check exclusion
     if app.excluded(path):
         return notfound(req, path, **renderargs)
 
