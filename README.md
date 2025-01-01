@@ -79,6 +79,17 @@ yhttp-markdown TAB TAB
 ```
 
 
+### Nginx + Systemd + Gunicorn
+Copy the `deploy.sh` to target server. then execute the script and answer the
+questions.
+
+```bash
+bob@laptop:~$ scp deploy.sh <server>
+bob@laptop:~$ ssh root@<server>
+root@server:~# ./deploy.sh
+```
+
+
 ## Configuration
 
 `yhttp-markdown` can be configured using a YAML configuration file 
